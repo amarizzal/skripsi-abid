@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Skripsi Abid
+    E-Schedule
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -41,7 +41,7 @@
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
         {{-- <img src="../assets/img/logo-ct-dark.png" width="26px" height="26px" class="navbar-brand-img h-100" alt="main_logo"> --}}
-        <span class="ms-1 font-weight-bold">Skripsi Abid</span>
+        <span class="ms-1 font-weight-bold">E-Schedule</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -64,20 +64,20 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../pages/billing.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">User</span>
-          </a>
+            <a class="nav-link {{ request()->is('user') ? 'active' : '' }}" href="{{ route('user') }}">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">User</span>
+            </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../pages/virtual-reality.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-app text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Contact</span>
-          </a>
+            <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="{{ route('contact') }}">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-app text-dark text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Contact</span>
+            </a>
         </li>
         {{-- <li class="nav-item">
           <a class="nav-link " href="../pages/rtl.html">
@@ -127,7 +127,7 @@
         </div>
       </div> --}}
       {{-- <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">Documentation</a> --}}
-      <a class="btn btn-danger btn-sm mb-0 w-100" href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=sidebarfree" type="button">Logout</a>
+      <a class="btn btn-danger btn-sm mb-0 w-100" href="{{ route('login') }}" type="button">Logout</a>
     </div>
   </aside>
   
@@ -307,7 +307,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/argon-dashboard.min.js?v=2.1.0"></script>
+  <script src="{{ asset('js/argon-dashboard.min.js?v=2.1.0') }}""></script>
 </body>
 
 </html>

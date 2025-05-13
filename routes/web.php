@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('landingPage');
+})->name('landingPage');
+Route::get('/login', function () {
     return view('login');
 })->name('login');
 Route::get('/dashboard', function () {
@@ -22,3 +25,9 @@ Route::get('/dashboard', function () {
 Route::get('/schedule', function () {
     return view('schedule');
 })->name('schedule');
+Route::get('/user', function () {
+    return view('user');
+})->name('user');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
