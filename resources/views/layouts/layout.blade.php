@@ -127,7 +127,10 @@
         </div>
       </div> --}}
       {{-- <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">Documentation</a> --}}
-      <a class="btn btn-danger btn-sm mb-0 w-100" href="{{ route('login') }}" type="button">Logout</a>
+      <form id="logout-form" method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button class="btn btn-danger btn-sm mb-0 w-100" type="submit">Logout</button>
+      </form>
     </div>
   </aside>
   

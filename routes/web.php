@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,18 +18,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('landingPage');
 })->name('landingPage');
+
 Route::get('/login', function () {
     return view('login');
 })->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->name('dashboard')->middleware('auth');
 Route::get('/schedule', function () {
     return view('schedule');
 })->name('schedule');
 Route::get('/user', function () {
     return view('user');
 })->name('user');
+
+Route::resource('users', UserController::class)->middleware('auth');
+
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
