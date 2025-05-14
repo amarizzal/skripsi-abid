@@ -546,9 +546,8 @@
                 © <script>
                   document.write(new Date().getFullYear())
                 </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                for a better web.
+                made with  <i class="fa fa-heart"></i>
+                 
               </div>
             </div>
             <div class="col-lg-6">
