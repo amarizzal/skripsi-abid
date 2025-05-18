@@ -131,7 +131,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Today</p>
                     <h5 class="font-weight-bolder text-lg">
-                      3
+                      {{ $schedules->count() }}
                     </h5>
                     <p class="mb-0">
                       {{-- <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -157,7 +157,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Tomorrow</p>
                     <h5 class="font-weight-bolder">
-                      4
+                      {{ $schedulesTomorrow }}
                     </h5>
                     <p class="mb-0">
                       {{-- <span class="text-success text-sm font-weight-bolder">+3%</span>
@@ -250,15 +250,13 @@
             <div class="table-responsive">
               <table class="table align-items-center ">
                 <tbody>
+                  @foreach ($schedules as $schedule)
                   <tr>
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
-                        {{-- <div>
-                          <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                        </div> --}}
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">Event:</p>
-                          <h6 class="text-sm mb-0">Rapat Bulanan</h6>
+                          <h6 class="text-sm mb-0">{{ $schedule->content }}</h6>
                         </div>
                       </div>
                     </td>
@@ -281,99 +279,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        {{-- <div>
-                          <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                        </div> --}}
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Event:</p>
-                          <h6 class="text-sm mb-0">Rapat Bulanan</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Time:</p>
-                        <h6 class="text-sm mb-0">17:00</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Place:</p>
-                        <h6 class="text-sm mb-0">Balaikota</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Status:</p>
-                        <h6 class="text-sm mb-0">Internal</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        {{-- <div>
-                          <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                        </div> --}}
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Event:</p>
-                          <h6 class="text-sm mb-0">Rapat Bulanan</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Time:</p>
-                        <h6 class="text-sm mb-0">17:00</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Place:</p>
-                        <h6 class="text-sm mb-0">Balaikota</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Status:</p>
-                        <h6 class="text-sm mb-0">Internal</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        {{-- <div>
-                          <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                        </div> --}}
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Event:</p>
-                          <h6 class="text-sm mb-0">Rapat Bulanan</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Time:</p>
-                        <h6 class="text-sm mb-0">17:00</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Place:</p>
-                        <h6 class="text-sm mb-0">Balaikota</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Status:</p>
-                        <h6 class="text-sm mb-0">Internal</h6>
-                      </div>
-                    </td>
-                  </tr>
+                  @endforeach
                   
                 </tbody>
               </table>
