@@ -186,9 +186,17 @@
                         <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
-                        <a href="javascript:;" class="text-danger ms-3 font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Delete
+
+                        <!-- Link-style delete using a tag -->
+                        <a href="#" class="text-danger ms-3 font-weight-bold text-xs"
+                            onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this schedule?')) { document.getElementById('delete-form{{$schedule->id}}').submit(); }">
+                            Delete
                         </a>
+
+                        <form id="delete-form{{$schedule->id}}" action="{{ route('schedules.destroy', $schedule) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                       </td>
                     </tr>
                     @endforeach
@@ -246,7 +254,7 @@
                 <div class="card-body pb-3">
                   <form action="{{ route('schedules.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
                     @csrf
-                    
+
                     <label>Date</label>
                     <div class="input-group mb-3">
                       <input name="date" class="form-control" type="date" value="2018-11-23" id="example-date-input">
