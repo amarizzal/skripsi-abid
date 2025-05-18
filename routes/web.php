@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,14 +30,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
-Route::get('/schedule', function () {
-    return view('schedule');
-})->name('schedule');
-Route::get('/user', function () {
-    return view('user');
-})->name('user');
 
 Route::resource('users', UserController::class)->middleware('auth');
+Route::resource('schedules', ScheduleController::class)->middleware('auth');
 
 Route::get('/contact', function () {
     return view('contact');
