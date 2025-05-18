@@ -166,6 +166,17 @@
                         <a href="{{ route('users.edit', $user->id) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
+
+                        <!-- Link-style delete using a tag -->
+                        <a href="#" class="text-danger ms-3 font-weight-bold text-xs"
+                            onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this user?')) { document.getElementById('delete-form{{$user->id}}').submit(); }">
+                            Delete
+                        </a>
+
+                        <form id="delete-form{{$user->id}}" action="{{ route('users.destroy', $user) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                       </td>
                     </tr>
                     @endforeach
