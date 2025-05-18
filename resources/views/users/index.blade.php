@@ -124,7 +124,22 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Users table</h6>
+
+              @if(session('success'))
+                <div class="alert alert-success text-white" role="alert">
+                  <strong>Success!</strong> {{ session('success') }}
+                </div>
+              @endif
+
+              <div class="row justify-content-center align-items-center">
+                <div class="col-6">
+                  <h6>Users table</h6>
+                  
+                </div>
+                <div class="col-6 text-end">
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn bg-gradient-dark mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New User</button>
+                </div>
+              </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
@@ -327,7 +342,63 @@
           </div>
         </div>
       </div>
+
+      {{-- Modal --}}
+      <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-body p-0">
+              <div class="card card-plain">
+                <div class="card-header pb-0 text-left">
+                    <h5 class="font-weight-bolder text-primary text-gradient">Add new user</h5>
+                    <p class="mb-0">Enter user's description</p>
+                </div>
+                <div class="card-body pb-3">
+                  <form action="{{ route('users.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
+                    @csrf
+                    
+                    <label>Email</label>
+                    <div class="input-group mb-3">
+                      <input required type="email" name="email" class="form-control" placeholder="Email" aria-label="Email">
+                    </div>
+
+                    <label>Name</label>
+                    <div class="input-group mb-3">
+                      <input name="name" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon">
+                    </div>
+
+                    <label>Password</label>
+                    <div class="input-group mb-3">
+                      <input required type="password" name="password" class="form-control" placeholder="Password" aria-label="Password">
+                    </div>
+
+                    <label>Role</label>
+                    <div class="input-group mb-3">
+                        <select name="role" id="role" class="form-control" required>
+                          <option value="" selected disabled>Select role</option>
+                          <option value="admin">Admin</option>
+                          <option value="sekda">Sekda</option>
+                        </select>
+                    </div>
+
+                    <div class="text-center mb-3">
+                      <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Add</button>
+                    </div>
+                  </form>
+                </div>
+                {{-- <div class="card-footer text-center pt-0 px-sm-4 px-1">
+                  <p class="mb-4 mx-auto">
+                    Already have an account?
+                    <a href="javascrpt:;" class="text-primary text-gradient font-weight-bold">Sign in</a>
+                  </p>
+                </div> --}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
+      {{-- Footer --}}
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
