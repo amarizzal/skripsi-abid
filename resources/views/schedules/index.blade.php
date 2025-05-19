@@ -142,11 +142,11 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Event</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Place & Dresscode</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Disposition</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Access Level</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Audience</th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
@@ -154,10 +154,16 @@
                   <tbody>
                     @foreach($schedules as $schedule)
                     <tr>
+                      <td class="align-middle text-center">
+                        <div class="d-flex flex-column justify-content-center">
+                          <span class="text-secondary text-xs font-weight-bold">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</span>
+                          <p class="text-xs text-secondary mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('d/m/Y') }}</p>
+                        </div>
+                      </td>
                       <td>
                         <div class="d-flex px-3 py-1">
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">{{ $schedule->content }}</h6>
+                            <h6 class="mb-0 text-sm text-primary">{{ $schedule->content }}</h6>
                           </div>
                         </div>
                       </td>
@@ -176,9 +182,7 @@
                       <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success">{{ $schedule->access_level }}</span>
                       </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">{{ \Carbon\Carbon::parse($schedule->date)->format('d/m/Y') }}</span>
-                      </td>
+                      
                       <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success">{{ $schedule->audience }}</span>
                       </td>

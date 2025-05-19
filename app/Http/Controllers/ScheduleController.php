@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class ScheduleController extends Controller
 {
     public function index()
     {
-        $schedules = Schedule::latest()->paginate(10);
+        $schedules = Schedule::whereDate('date', '>=', Carbon::today())->orderBy('date', 'asc')->paginate(10);
         return view('schedules.index', compact('schedules'));
     }
 
