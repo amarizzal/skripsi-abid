@@ -139,7 +139,7 @@
                       </td>
                       <td class="align-middle text-sm">
                         <div class="col text-center">
-                          <p class="text-xs font-weight-bold mb-0">Status:</p>
+                          <p class="text-xs font-weight-bold mb-0">Audience:</p>
                           <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
                         </div>
                       </td>
