@@ -13,9 +13,20 @@ class DashboardController extends Controller
         $today = Carbon::today();
         $tomorrow = Carbon::tomorrow();
         
-        $schedules = Schedule::whereDate('date', $today)->get();
+        $schedules = Schedule::whereDate('date', $today)->orderBy('date', 'asc')->get();
         $schedulesTomorrow = Schedule::whereDate('date', $tomorrow)->count();
 
         return view('dashboard', compact('schedules', 'schedulesTomorrow'));
+    }
+
+    public function landingPage()
+    {
+        $today = Carbon::today();
+        $tomorrow = Carbon::tomorrow();
+        
+        $schedules = Schedule::whereDate('date', $today)->orderBy('date', 'asc')->get();
+        $schedulesTomorrow = Schedule::whereDate('date', $tomorrow)->count();
+
+        return view('landingPage', compact('schedules', 'schedulesTomorrow'));
     }
 }

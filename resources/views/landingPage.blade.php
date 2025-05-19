@@ -99,7 +99,7 @@
     <div class="container">
       <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
         <div class="row mt-4">
-          <div class="col-lg-7 mb-lg-0 mb-4">
+          <div class="col-lg-12 mb-lg-0 mb-4">
             <div class="card ">
               <div class="card-header pb-0 p-3">
                 <div class="d-flex justify-content-between">
@@ -109,201 +109,45 @@
               <div class="table-responsive">
                 <table class="table align-items-center ">
                   <tbody>
+                    @foreach ($schedules as $schedule)
                     <tr>
+                      <td>
+                        <div class="text-center">
+                          <p class="text-xs font-weight-bold mb-0">Time:</p>
+                          <h6 class="text-sm text-danger mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</h6>
+                        </div>
+                      </td>
                       <td class="w-30">
                         <div class="d-flex px-2 py-1 align-items-center">
-                          {{-- <div>
-                            <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                          </div> --}}
                           <div class="ms-4">
                             <p class="text-xs font-weight-bold mb-0">Event:</p>
-                            <h6 class="text-sm mb-0">Rapat Bulanan</h6>
+                            <h6 class="text-sm mb-0 text-primary">{{ $schedule->content }}</h6>
                           </div>
                         </div>
                       </td>
                       <td>
                         <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Time:</p>
-                          <h6 class="text-sm mb-0">17:00</h6>
+                          <p class="text-xs font-weight-bold mb-0">Dresscode:</p>
+                          <h6 class="text-sm mb-0">{{ $schedule->dresscode }}</h6>
                         </div>
                       </td>
                       <td>
                         <div class="text-center">
                           <p class="text-xs font-weight-bold mb-0">Place:</p>
-                          <h6 class="text-sm mb-0">Balaikota</h6>
+                          <h6 class="text-sm mb-0">{{ $schedule->place }}</h6>
                         </div>
                       </td>
                       <td class="align-middle text-sm">
                         <div class="col text-center">
                           <p class="text-xs font-weight-bold mb-0">Status:</p>
-                          <h6 class="text-sm mb-0">Internal</h6>
+                          <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
                         </div>
                       </td>
                     </tr>
-                    <tr>
-                      <td class="w-30">
-                        <div class="d-flex px-2 py-1 align-items-center">
-                          {{-- <div>
-                            <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                          </div> --}}
-                          <div class="ms-4">
-                            <p class="text-xs font-weight-bold mb-0">Event:</p>
-                            <h6 class="text-sm mb-0">Rapat Bulanan</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Time:</p>
-                          <h6 class="text-sm mb-0">17:00</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Place:</p>
-                          <h6 class="text-sm mb-0">Balaikota</h6>
-                        </div>
-                      </td>
-                      <td class="align-middle text-sm">
-                        <div class="col text-center">
-                          <p class="text-xs font-weight-bold mb-0">Status:</p>
-                          <h6 class="text-sm mb-0">Internal</h6>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="w-30">
-                        <div class="d-flex px-2 py-1 align-items-center">
-                          {{-- <div>
-                            <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                          </div> --}}
-                          <div class="ms-4">
-                            <p class="text-xs font-weight-bold mb-0">Event:</p>
-                            <h6 class="text-sm mb-0">Rapat Bulanan</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Time:</p>
-                          <h6 class="text-sm mb-0">17:00</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Place:</p>
-                          <h6 class="text-sm mb-0">Balaikota</h6>
-                        </div>
-                      </td>
-                      <td class="align-middle text-sm">
-                        <div class="col text-center">
-                          <p class="text-xs font-weight-bold mb-0">Status:</p>
-                          <h6 class="text-sm mb-0">Internal</h6>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="w-30">
-                        <div class="d-flex px-2 py-1 align-items-center">
-                          {{-- <div>
-                            <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                          </div> --}}
-                          <div class="ms-4">
-                            <p class="text-xs font-weight-bold mb-0">Event:</p>
-                            <h6 class="text-sm mb-0">Rapat Bulanan</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Time:</p>
-                          <h6 class="text-sm mb-0">17:00</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Place:</p>
-                          <h6 class="text-sm mb-0">Balaikota</h6>
-                        </div>
-                      </td>
-                      <td class="align-middle text-sm">
-                        <div class="col text-center">
-                          <p class="text-xs font-weight-bold mb-0">Status:</p>
-                          <h6 class="text-sm mb-0">Internal</h6>
-                        </div>
-                      </td>
-                    </tr>
+                    @endforeach
                     
                   </tbody>
                 </table>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="card">
-              <div class="card-header pb-0 p-3">
-                <h6 class="mb-0">Categories</h6>
-              </div>
-              <div class="card-body p-3">
-                <ul class="list-group">
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                        <i class="ni ni-mobile-button text-white opacity-10"></i>
-                      </div>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Internal</h6>
-                        <span class="text-xs">Acara khusus internal</span>
-                        {{-- <span class="text-xs">250 in stock, <span class="font-weight-bold">346+ sold</span></span> --}}
-                      </div>
-                    </div>
-                    <div class="d-flex">
-                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                    </div>
-                  </li>
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                        <i class="ni ni-tag text-white opacity-10"></i>
-                      </div>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Eksternal</h6>
-                        <span class="text-xs">Acara khusus eksternal</span>
-                      </div>
-                    </div>
-                    <div class="d-flex">
-                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                    </div>
-                  </li>
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                        <i class="ni ni-box-2 text-white opacity-10"></i>
-                      </div>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Publik</h6>
-                        <span class="text-xs">Acara untuk publik</span>
-                      </div>
-                    </div>
-                    <div class="d-flex">
-                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                    </div>
-                  </li>
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                        <i class="ni ni-satisfied text-white opacity-10"></i>
-                      </div>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Rahasia</h6>
-                        <span class="text-xs">Acara rahasia</span>
-                      </div>
-                    </div>
-                    <div class="d-flex">
-                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                    </div>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>

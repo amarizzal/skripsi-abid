@@ -18,9 +18,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('landingPage');
-})->name('landingPage');
+Route::get('/', [DashboardController::class, 'landingPage'])->name('landingPage');
 
 Route::get('/login', function () {
     return view('login');
