@@ -85,7 +85,7 @@
   </nav>
   <!-- End Navbar -->
   <main class="main-content  mt-0">
-    <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signup-cover.jpg'); background-position: top;">
+    <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('{{asset('img/bg-primary.jpg')}}'); background-position: bottom;">
       <span class="mask bg-gradient-dark opacity-6"></span>
       <div class="container">
         <div class="row justify-content-center">
@@ -106,49 +106,57 @@
                   <h6 class="mb-2">Today's Schedule</h6>
                 </div>
               </div>
-              <div class="table-responsive">
-                <table class="table align-items-center ">
-                  <tbody>
-                    @foreach ($schedules as $schedule)
-                    <tr>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Time:</p>
-                          <h6 class="text-sm text-danger mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</h6>
-                        </div>
-                      </td>
-                      <td class="w-30">
-                        <div class="d-flex px-2 py-1 align-items-center">
-                          <div class="ms-4">
-                            <p class="text-xs font-weight-bold mb-0">Event:</p>
-                            <h6 class="text-sm mb-0 text-primary">{{ $schedule->content }}</h6>
+              @if ($schedules->isEmpty())
+                <div class="text-center">
+                  <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
+                  <p class="text-sm text-secondary">No schedules available for today.</p>
+                </div>
+              @else
+                <div class="table-responsive">
+                  <table class="table align-items-center ">
+                    <tbody>
+                      @foreach ($schedules as $schedule)
+                      <tr>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">Time:</p>
+                            <h6 class="text-sm text-danger mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</h6>
                           </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Dresscode:</p>
-                          <h6 class="text-sm mb-0">{{ $schedule->dresscode }}</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Place:</p>
-                          <h6 class="text-sm mb-0">{{ $schedule->place }}</h6>
-                        </div>
-                      </td>
-                      <td class="align-middle text-sm">
-                        <div class="col text-center">
-                          <p class="text-xs font-weight-bold mb-0">Audience:</p>
-                          <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
-                        </div>
-                      </td>
-                    </tr>
-                    @endforeach
-                    
-                  </tbody>
-                </table>
-              </div>
+                        </td>
+                        <td class="w-30">
+                          <div class="d-flex px-2 py-1 align-items-center">
+                            <div class="ms-4">
+                              <p class="text-xs font-weight-bold mb-0">Event:</p>
+                              <h6 class="text-sm mb-0 text-primary">{{ $schedule->content }}</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">Dresscode:</p>
+                            <h6 class="text-sm mb-0">{{ $schedule->dresscode }}</h6>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">Place:</p>
+                            <h6 class="text-sm mb-0">{{ $schedule->place }}</h6>
+                          </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <div class="col text-center">
+                            <p class="text-xs font-weight-bold mb-0">Audience:</p>
+                            <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
+                      
+                    </tbody>
+                  </table>
+                </div>
+                
+              @endif
             </div>
           </div>
         </div>
@@ -187,6 +195,10 @@
       </div>
       <div class="row">
         <div class="col-8 mx-auto text-center mt-1">
+          <div class="mt-3">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo 1" style="height:40px; margin-right:10px;">
+            <img src="{{ asset('img/logo2.png') }}" alt="Logo 2" style="height:40px;">
+          </div>
           <p class="mb-0 text-secondary">
             Copyright © <script>
               document.write(new Date().getFullYear())

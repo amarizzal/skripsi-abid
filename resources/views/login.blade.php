@@ -129,11 +129,11 @@
               </div>
             </div>
             <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
-              <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signup-cover.jpg');
-          background-size: cover;">
-                <span class="mask bg-gradient-dark opacity-6"></span>
-                <h3 class="mt-5 text-white font-weight-bolder position-relative">E-Schedule</h3>
-                <p class="text-white position-relative">Sign in to manage your schedules</p>
+              <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('{{ asset('img/bg-primary.jpg')}}'); background-size: cover; background-position: center;">
+              <span class="mask bg-gradient-dark opacity-6"></span>
+              <img src="{{ asset('img/logo.png') }}" alt="E-Schedule Logo" class="mx-auto" style="max-width: 120px; position: relative; z-index: 2;">
+              <h3 class="mt-5 text-white font-weight-bolder position-relative">E-Schedule</h3>
+              <p class="text-white position-relative">Sign in to manage your schedules</p>
               </div>
             </div>
           </div>
