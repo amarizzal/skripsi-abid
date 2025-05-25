@@ -248,6 +248,48 @@
               </div>
             </div>
             <div class="table-responsive">
+              @if ($schedules->isEmpty())
+                <div class="text-center">
+                  <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
+                  <p class="text-sm text-secondary">No schedules available for today.</p>
+                </div>
+              @else
+                <table class="table align-items-center ">
+                  <tbody>
+                    @foreach ($schedules as $schedule)
+                    <tr>
+                      <td class="w-30">
+                        <div class="d-flex px-2 py-1 align-items-center">
+                          <div class="ms-4">
+                            <p class="text-xs font-weight-bold mb-0">Event:</p>
+                            <h6 class="text-sm mb-0">{{ $schedule->content }}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <p class="text-xs font-weight-bold mb-0">Time:</p>
+                          <h6 class="text-sm mb-0">17:00</h6>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <p class="text-xs font-weight-bold mb-0">Place:</p>
+                          <h6 class="text-sm mb-0">Balaikota</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle text-sm">
+                        <div class="col text-center">
+                          <p class="text-xs font-weight-bold mb-0">Status:</p>
+                          <h6 class="text-sm mb-0">Internal</h6>
+                        </div>
+                      </td>
+                    </tr>
+                    @endforeach
+                    
+                  </tbody>
+                </table>
+              @endif
               <table class="table align-items-center ">
                 <tbody>
                   @foreach ($schedules as $schedule)
