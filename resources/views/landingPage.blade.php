@@ -19,7 +19,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="{{asset('img/logo.png')}}">
   <title>
     E-Schedule
   </title>
@@ -124,10 +124,68 @@
                           </div>
                         </td>
                         <td class="w-30">
-                          <div class="d-flex px-2 py-1 align-items-center">
+                          <div class="d-flex align-items-center">
                             <div class="ms-4">
                               <p class="text-xs font-weight-bold mb-0">Event:</p>
-                              <h6 class="text-sm mb-0 text-primary">{{ $schedule->content }}</h6>
+                              <h6 class=" mb-0 text-primary">{{ $schedule->content }}</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">Dresscode:</p>
+                            <h6 class="text-sm mb-0">{{ $schedule->dresscode }}</h6>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">Place:</p>
+                            <h6 class="text-sm mb-0">{{ $schedule->place }}</h6>
+                          </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <div class="col text-center">
+                            <p class="text-xs font-weight-bold mb-0">Audience:</p>
+                            <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
+                      
+                    </tbody>
+                  </table>
+                </div>
+                
+              @endif
+
+                <hr class="horizontal my-3" style="border-top: 2px solid #3e57e4;">
+              <div class="card-header pb-0 p-3">
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-2">Tomorrow's Schedule</h6>
+                </div>
+              </div>
+              @if ($schedulesTomorrow->isEmpty())
+                <div class="text-center">
+                  <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
+                  <p class="text-sm text-secondary">No schedules available for tomorrow.</p>
+                </div>
+              @else
+                <div class="table-responsive">
+                  <table class="table align-items-start ">
+                    <tbody>
+                      @foreach ($schedulesTomorrow as $schedule)
+                      <tr>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">Time:</p>
+                            <h6 class="text-sm text-danger mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</h6>
+                          </div>
+                        </td>
+                        <td class="w-30">
+                          <div class="d-flex align-items-center">
+                            <div class="ms-4">
+                              <p class="text-xs font-weight-bold mb-0">Event:</p>
+                              <h6 class=" mb-0 text-primary">{{ $schedule->content }}</h6>
                             </div>
                           </div>
                         </td>

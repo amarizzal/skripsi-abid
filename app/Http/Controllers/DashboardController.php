@@ -25,7 +25,7 @@ class DashboardController extends Controller
         $tomorrow = Carbon::tomorrow();
         
         $schedules = Schedule::whereDate('date', $today)->orderBy('date', 'asc')->get();
-        $schedulesTomorrow = Schedule::whereDate('date', $tomorrow)->count();
+        $schedulesTomorrow = Schedule::whereDate('date', $tomorrow)->orderBy('date', 'asc')->get();
 
         return view('landingPage', compact('schedules', 'schedulesTomorrow'));
     }
