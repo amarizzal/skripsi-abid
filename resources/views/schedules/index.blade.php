@@ -138,75 +138,82 @@
               </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Event</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Place & Dresscode</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Disposition</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Access Level</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Audience</th>
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($schedules as $schedule)
-                    <tr>
-                      <td class="align-middle text-center">
-                        <div class="d-flex flex-column justify-content-center">
-                          <span class="text-secondary text-xs font-weight-bold">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</span>
-                          <p class="text-xs text-secondary mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('d/m/Y') }}</p>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="d-flex px-3 py-1">
+              @if ($schedules->isEmpty())
+                <div class="text-center">
+                  <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
+                  <p class="text-sm text-secondary">No schedules available for today.</p>
+                </div>
+              @else
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Event</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Place & Dresscode</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Disposition</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Access Level</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Audience</th>
+                        <th class="text-secondary opacity-7"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($schedules as $schedule)
+                      <tr>
+                        <td class="align-middle text-center">
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm text-primary">{{ $schedule->content }}</h6>
+                            <span class="text-secondary text-xs font-weight-bold">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</span>
+                            <p class="text-xs text-secondary mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('d/m/Y') }}</p>
                           </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="d-flex px-0 py-1">
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">{{ $schedule->place }}</h6>
-                            <p class="text-xs text-secondary mb-0">{{ $schedule->dresscode }}</p>
+                        </td>
+                        <td>
+                          <div class="d-flex px-3 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                              <h6 class="mb-0 text-sm text-primary">{{ $schedule->content }}</h6>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">{{ $schedule->disposition }}</p>
-                        {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success">{{ $schedule->access_level }}</span>
-                      </td>
-                      
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success">{{ $schedule->audience }}</span>
-                      </td>
-                      <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
-                        </a>
+                        </td>
+                        <td>
+                          <div class="d-flex px-0 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                              <h6 class="mb-0 text-sm">{{ $schedule->place }}</h6>
+                              <p class="text-xs text-secondary mb-0">{{ $schedule->dresscode }}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">{{ $schedule->disposition }}</p>
+                          {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <span class="badge badge-sm bg-gradient-success">{{ $schedule->access_level }}</span>
+                        </td>
+                        
+                        <td class="align-middle text-center text-sm">
+                          <span class="badge badge-sm bg-gradient-success">{{ $schedule->audience }}</span>
+                        </td>
+                        <td class="align-middle">
+                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                            Edit
+                          </a>
 
-                        <!-- Link-style delete using a tag -->
-                        <a href="#" class="text-danger ms-3 font-weight-bold text-xs"
-                            onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this schedule?')) { document.getElementById('delete-form{{$schedule->id}}').submit(); }">
-                            Delete
-                        </a>
+                          <!-- Link-style delete using a tag -->
+                          <a href="#" class="text-danger ms-3 font-weight-bold text-xs"
+                              onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this schedule?')) { document.getElementById('delete-form{{$schedule->id}}').submit(); }">
+                              Delete
+                          </a>
 
-                        <form id="delete-form{{$schedule->id}}" action="{{ route('schedules.destroy', $schedule) }}" method="POST" style="display: none;">
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                      </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
+                          <form id="delete-form{{$schedule->id}}" action="{{ route('schedules.destroy', $schedule) }}" method="POST" style="display: none;">
+                              @csrf
+                              @method('DELETE')
+                          </form>
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              @endif
             </div>
           </div>
         </div>
