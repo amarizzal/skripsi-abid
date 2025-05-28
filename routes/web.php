@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,5 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('schedules', ScheduleController::class)->middleware('auth');
+Route::resource('contact', ContactController::class)->middleware('auth');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
