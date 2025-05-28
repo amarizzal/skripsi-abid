@@ -133,7 +133,7 @@
                   
                 </div>
                 <div class="col-6 text-end">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn bg-gradient-dark mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Scehdule</button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn btn-success mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Scehdule</button>
                 </div>
               </div>
             </div>
@@ -193,7 +193,7 @@
                           <span class="badge badge-sm bg-gradient-success">{{ $schedule->audience }}</span>
                         </td>
                         <td class="align-middle">
-                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                             Edit
                           </a>
 

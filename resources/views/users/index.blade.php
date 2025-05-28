@@ -137,7 +137,7 @@
                   
                 </div>
                 <div class="col-6 text-end">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn bg-gradient-dark mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New User</button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn btn-success mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New User</button>
                 </div>
               </div>
             </div>
@@ -178,7 +178,7 @@
                         <span class="text-secondary text-xs font-weight-bold">{{ $user->created_at }}</span>
                       </td>
                       <td class="align-middle">
-                        <a href="{{ route('users.edit', $user->id) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="{{ route('users.edit', $user->id) }}" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
 
@@ -218,7 +218,7 @@
                         <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
                       </td>
@@ -246,7 +246,7 @@
                         <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
                       </td>
@@ -274,7 +274,7 @@
                         <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
                       </td>
@@ -302,7 +302,7 @@
                         <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
                       </td>
@@ -330,7 +330,7 @@
                         <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
                       </td>
