@@ -36,7 +36,7 @@ class ScheduleController extends Controller
         $data = $request->except('file');
 
         if ($request->hasFile('file')) {
-            $data['file'] = $request->file('file')->store('schedules');
+            $data['file'] = $request->file('file')->store('schedules', 'public');
         }
 
         Schedule::create($data);

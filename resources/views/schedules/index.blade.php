@@ -52,6 +52,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Disposition</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Access Level</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Audience</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">File</th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
                     </thead>
@@ -90,6 +91,18 @@
                         <td class="align-middle text-center text-sm">
                           <span class="badge badge-sm bg-gradient-success">{{ $schedule->audience }}</span>
                         </td>
+
+                      <td class="align-middle text-center my-auto">
+                        {{-- Link-style download button --}}
+                        @if($schedule->file)
+                          <a href="{{ asset('storage/' . $schedule->file) }}" class="btn btn-primary my-auto" download title="Download File">
+                            <i class="ni ni-single-copy-04"></i>
+                          </a>
+                        @else
+                          <span class="text-muted">-</span>
+                        @endif
+                      </td>
+
                         <td class="align-middle">
                           <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                             Edit
