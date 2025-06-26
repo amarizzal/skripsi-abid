@@ -39,7 +39,7 @@
   <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
     <div class="container">
       <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="../pages/dashboard.html">
-        E-Schedule
+        E-Schedule Kabupaten Malang
       </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon mt-2">
@@ -49,33 +49,23 @@
         </span>
       </button>
       <div class="collapse navbar-collapse" id="navigation">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href=" {{ route('landingPage')}} ">
-              <i class="fa fa-chart-pie opacity-6 me-1"></i>
-              Event
-            </a>
-          </li>
-          {{-- <li class="nav-item">
-            <a class="nav-link me-2" href="../pages/profile.html">
-              <i class="fa fa-user opacity-6 me-1"></i>
-              Profile
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link me-2" href="../pages/sign-up.html">
-              <i class="fas fa-user-circle opacity-6 me-1"></i>
-              Sign Up
-            </a>
-          </li> --}}
-          <li class="nav-item">
-            <a class="nav-link me-2" href=" {{ route('login')}} ">
-              <i class="fas fa-key opacity-6 me-1"></i>
-              Sign In
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav d-lg-block d-none">
+        <div class="mx-auto ps-lg-5 ps-xl-5 ps-md-4 ps-0">
+          <ul class="navbar-nav flex-row justify-content-center align-items-center">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="{{ route('landingPage')}}">
+                <i class="fa fa-chart-pie opacity-6 me-1"></i>
+                Agenda
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-2" href="{{ route('login')}}">
+                <i class="fas fa-key opacity-6 me-1"></i>
+                Sign In
+              </a>
+            </li>
+          </ul>
+        </div>
+        <ul class="navbar-nav ms-auto d-lg-block d-none">
           <li class="nav-item">
             <a href="{{ route('login') }}" class="btn btn-sm mb-0 me-1 btn-primary bg-gradient-light">Sign in</a>
           </li>
@@ -91,7 +81,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-5 text-center mx-auto">
             <h1 class="text-white mb-2 mt-5">E-Schedule</h1>
-            <p class="text-lead text-white">Use these page to see our schedules.</p>
+            <p class="text-lead text-white">Gunakan halaman ini untuk melihat agenda Pemerintah Kabupaten Malang</p>
           </div>
         </div>
       </div>
@@ -103,13 +93,13 @@
             <div class="card ">
               <div class="card-header pb-0 p-3">
                 <div class="d-flex justify-content-between">
-                  <h6 class="mb-2">Today's Schedule</h6>
+                  <h6 class="mb-2">Hari Ini</h6>
                 </div>
               </div>
               @if ($schedules->isEmpty())
                 <div class="text-center">
                   <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
-                  <p class="text-sm text-secondary">No schedules available for today.</p>
+                  <p class="text-sm text-secondary">Belum ada agenda untuk hari ini.</p>
                 </div>
               @else
                 <div class="table-responsive">
@@ -126,7 +116,7 @@
                         <td class="w-30">
                           <div class="d-flex align-items-center">
                             <div class="ms-4">
-                              <p class="text-xs font-weight-bold mb-0">Event:</p>
+                              <p class="text-xs font-weight-bold mb-0">Agenda:</p>
                               <h6 class=" mb-0 text-primary">{{ $schedule->content }}</h6>
                             </div>
                           </div>
@@ -161,13 +151,13 @@
                 <hr class="horizontal my-3" style="border-top: 2px solid #3e57e4;">
               <div class="card-header pb-0 p-3">
                 <div class="d-flex justify-content-between">
-                  <h6 class="mb-2">Tomorrow's Schedule</h6>
+                  <h6 class="mb-2">Besok</h6>
                 </div>
               </div>
               @if ($schedulesTomorrow->isEmpty())
                 <div class="text-center">
                   <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
-                  <p class="text-sm text-secondary">No schedules available for tomorrow.</p>
+                  <p class="text-sm text-secondary">Belum ada agenda untuk besok.</p>
                 </div>
               @else
                 <div class="table-responsive">
@@ -177,14 +167,14 @@
                       <tr>
                         <td>
                           <div class="text-center">
-                            <p class="text-xs font-weight-bold mb-0">Time:</p>
+                            <p class="text-xs font-weight-bold mb-0">Waktu:</p>
                             <h6 class="text-sm text-danger mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</h6>
                           </div>
                         </td>
                         <td class="w-30">
                           <div class="d-flex align-items-center">
                             <div class="ms-4">
-                              <p class="text-xs font-weight-bold mb-0">Event:</p>
+                              <p class="text-xs font-weight-bold mb-0">Agenda:</p>
                               <h6 class=" mb-0 text-primary">{{ $schedule->content }}</h6>
                             </div>
                           </div>
@@ -197,13 +187,13 @@
                         </td>
                         <td>
                           <div class="text-center">
-                            <p class="text-xs font-weight-bold mb-0">Place:</p>
+                            <p class="text-xs font-weight-bold mb-0">Tempat:</p>
                             <h6 class="text-sm mb-0">{{ $schedule->place }}</h6>
                           </div>
                         </td>
                         <td class="align-middle text-sm">
                           <div class="col text-center">
-                            <p class="text-xs font-weight-bold mb-0">Audience:</p>
+                            <p class="text-xs font-weight-bold mb-0">Peserta:</p>
                             <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
                           </div>
                         </td>
@@ -227,7 +217,7 @@
       <div class="row">
         <div class="col-lg-8 mb-4 mx-auto text-center">
           {{-- <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Event
+            Agenda
           </a>
           <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
             Sign in

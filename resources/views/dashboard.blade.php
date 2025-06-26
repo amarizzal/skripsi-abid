@@ -10,7 +10,7 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Halaman</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
           </ol>
           <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
@@ -27,14 +27,14 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Hari ini</p>
                     <h5 class="font-weight-bolder text-lg">
                       {{ $schedules->count() }}
                     </h5>
                     <p class="mb-0">
                       {{-- <span class="text-success text-sm font-weight-bolder">+55%</span>
                       since yesterday --}}
-                      Schedule
+                      Agenda
                     </p>
                   </div>
                 </div>
@@ -53,14 +53,14 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Tomorrow</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Besok</p>
                     <h5 class="font-weight-bolder">
                       {{ $schedulesTomorrow }}
                     </h5>
                     <p class="mb-0">
                       {{-- <span class="text-success text-sm font-weight-bolder">+3%</span>
                       since last week --}}
-                      Schedule
+                      Agenda
                     </p>
                   </div>
                 </div>
@@ -142,14 +142,14 @@
           <div class="card ">
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
-                <h6 class="mb-2">Today's Schedule</h6>
+                <h6 class="mb-2">Hari ini</h6>
               </div>
             </div>
             <div class="table-responsive">
               @if ($schedules->isEmpty())
                 <div class="text-center">
                   <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
-                  <p class="text-sm text-secondary">No schedules available for today.</p>
+                  <p class="text-sm text-secondary">Belum ada agenda untuk hari ini.</p>
                 </div>
               @else
                 <table class="table align-items-center ">
@@ -159,7 +159,7 @@
                       <td class="w-30">
                         <div class="d-flex px-2 py-1 align-items-center">
                           <div class="ms-4">
-                            <p class="text-xs font-weight-bold mb-0">Event:</p>
+                            <p class="text-xs font-weight-bold mb-0">Agenda:</p>
                             <h6 class="text-sm mb-0">{{ $schedule->content }}</h6>
                           </div>
                         </div>

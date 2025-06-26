@@ -56,7 +56,7 @@
                 <li class="nav-item">
                   <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href=" {{ route('landingPage')}} ">
                     <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
-                    Event
+                    Agenda
                   </a>
                 </li>
                 {{-- <li class="nav-item">
@@ -104,7 +104,7 @@
                 @endif
                 <div class="card-header pb-0 text-start">
                   <h4 class="font-weight-bolder">Sign In</h4>
-                  <p class="mb-0">Enter your username and password to sign in</p>
+                  <p class="mb-0">Masukkan username dan password</p>
                 </div>
                 <div class="card-body">
                   <form role="form" method="POST" action="{{ route('login') }}">
@@ -122,8 +122,8 @@
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-sm mx-auto">
-                    Don't have an account?
-                    <a href="javascript:;" class="text-primary text-gradient font-weight-bold">Report to admin</a>
+                    Tidak punya akun?
+                    <a href="javascript:;" class="text-primary text-gradient font-weight-bold">Lapor ke admin</a>
                   </p>
                 </div>
               </div>
@@ -133,7 +133,7 @@
               <span class="mask bg-gradient-dark opacity-6"></span>
               <img src="{{ asset('img/logo.png') }}" alt="E-Schedule Logo" class="mx-auto" style="max-width: 120px; position: relative; z-index: 2;">
               <h3 class="mt-5 text-white font-weight-bolder position-relative">E-Schedule</h3>
-              <p class="text-white position-relative">Sign in to manage your schedules</p>
+              <p class="text-white position-relative">Sign in untuk mengatur agenda</p>
               </div>
             </div>
           </div>

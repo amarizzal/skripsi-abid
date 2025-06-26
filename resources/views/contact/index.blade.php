@@ -8,10 +8,10 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Contact</li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Halaman</a></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Kontak</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Contact</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Kontak</h6>
         </nav>
       </div>
     </nav>
@@ -28,11 +28,11 @@
               @endif
               <div class="row justify-content-center align-items-center">
                 <div class="col-6">
-                  <h6>Contacts table</h6>
+                  <h6>Daftar Kontak</h6>
                   
                 </div>
                 <div class="col-6 text-end">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn btn-success mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Contact</button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn btn-success mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Tambah Kontak Baru</button>
                 </div>
               </div>
             </div>
@@ -40,16 +40,16 @@
               @if ($contacts->isEmpty())
                 <div class="text-center">
                   <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
-                    <p class="text-sm text-secondary">No contact available.</p>
+                    <p class="text-sm text-secondary">Belum ada kontak.</p>
                 </div>
               @else
                 <div class="table-responsive p-0">
                   <table class="table align-items-center mb-0">
                     <thead>
                       <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created At</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">No. Handphone</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dibuat Pada</th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
                     </thead>
@@ -78,13 +78,13 @@
                           </td>
                           <td class="align-middle">
                             <a href="{{ route('contact.edit', $contact->id) }}" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                              Edit
+                              Ubah
                             </a>
 
                             <!-- Link-style delete using a tag -->
                             <a href="#" class="text-danger ms-3 font-weight-bold text-xs"
                                 onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this user?')) { document.getElementById('delete-form{{$contact->id}}').submit(); }">
-                                Delete
+                                Hapus
                             </a>
 
                             <form id="delete-form{{$contact->id}}" action="{{ route('contact.destroy', $contact) }}" method="POST" style="display: none;">
@@ -250,25 +250,25 @@
             <div class="modal-body p-0">
               <div class="card card-plain">
                 <div class="card-header pb-0 text-left">
-                    <h5 class="font-weight-bolder text-primary text-gradient">Add new contact</h5>
-                    <p class="mb-0">Enter contact's information</p>
+                    <h5 class="font-weight-bolder text-primary text-gradient">Tambah Kontak Baru</h5>
+                    <p class="mb-0">Masukkan informasi kontak</p>
                 </div>
                 <div class="card-body pb-3">
                   <form action="{{ route('contact.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
                     @csrf
 
-                    <label>Name</label>
+                    <label>Nama</label>
                     <div class="input-group mb-3">
-                      <input required type="text" name="name" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon">
+                      <input required type="text" name="name" class="form-control" placeholder="Nama" aria-label="Name" aria-describedby="email-addon">
                     </div>
 
-                    <label>Phone</label>
+                    <label>No. Handphone</label>
                     <div class="input-group mb-3">
-                      <input name="phone" type="text" class="form-control" placeholder="Phone" aria-label="Phone" aria-describedby="email-addon">
+                      <input name="phone" type="text" class="form-control" placeholder="No. Handphone" aria-label="Phone" aria-describedby="email-addon">
                     </div>
 
                     <div class="text-center mb-3">
-                      <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Add</button>
+                      <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Tambah</button>
                     </div>
                   </form>
                 </div>

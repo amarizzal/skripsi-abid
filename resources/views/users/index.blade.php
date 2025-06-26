@@ -8,10 +8,10 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Users</li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Halaman</a></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">User</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Users</h6>
+          <h6 class="font-weight-bolder text-white mb-0">User</h6>
         </nav>
         
       </div>
@@ -31,11 +31,11 @@
 
               <div class="row justify-content-center align-items-center">
                 <div class="col-6">
-                  <h6>Users table</h6>
+                  <h6>Daftar User</h6>
                   
                 </div>
                 <div class="col-6 text-end">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn btn-success mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New User</button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn btn-success mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Tambah User Baru</button>
                 </div>
               </div>
             </div>
@@ -45,9 +45,9 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Role</th>
                       {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th> --}}
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Terdaftar</th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
@@ -77,13 +77,13 @@
                       </td>
                       <td class="align-middle">
                         <a href="{{ route('users.edit', $user->id) }}" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
+                          Ubah
                         </a>
 
                         <!-- Link-style delete using a tag -->
                         <a href="#" class="text-danger ms-3 font-weight-bold text-xs"
                             onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this user?')) { document.getElementById('delete-form{{$user->id}}').submit(); }">
-                            Delete
+                            Hapus
                         </a>
 
                         <form id="delete-form{{$user->id}}" action="{{ route('users.destroy', $user) }}" method="POST" style="display: none;">
@@ -248,8 +248,8 @@
             <div class="modal-body p-0">
               <div class="card card-plain">
                 <div class="card-header pb-0 text-left">
-                    <h5 class="font-weight-bolder text-primary text-gradient">Add new user</h5>
-                    <p class="mb-0">Enter user's description</p>
+                    <h5 class="font-weight-bolder text-primary text-gradient">Tambah User Baru</h5>
+                    <p class="mb-0">Masukkan biodata pengguna</p>
                 </div>
                 <div class="card-body pb-3">
                   <form action="{{ route('users.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
@@ -260,7 +260,7 @@
                       <input required type="email" name="email" class="form-control" placeholder="Email" aria-label="Email">
                     </div>
 
-                    <label>Name</label>
+                    <label>Nama</label>
                     <div class="input-group mb-3">
                       <input name="name" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon">
                     </div>
@@ -273,14 +273,14 @@
                     <label>Role</label>
                     <div class="input-group mb-3">
                         <select name="role" id="role" class="form-control" required>
-                          <option value="" selected disabled>Select role</option>
+                          <option value="" selected disabled>Pilih role</option>
                           <option value="admin">Admin</option>
                           <option value="sekda">Sekda</option>
                         </select>
                     </div>
 
                     <div class="text-center mb-3">
-                      <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Add</button>
+                      <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Tambah</button>
                     </div>
                   </form>
                 </div>
