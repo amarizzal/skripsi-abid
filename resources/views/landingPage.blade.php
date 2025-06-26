@@ -222,37 +222,31 @@
     </div>
   </main>
   <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
-  <footer class="footer py-5">
+  <footer class="footer mt-3 py-5">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mb-4 mx-auto text-center">
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          {{-- <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
             Event
           </a>
           <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
             Sign in
-          </a>
-        </div>
-        <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-dribbble"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-twitter"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-instagram"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-pinterest"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-github"></span>
-          </a>
+          </a> --}}
+          <h6 class="mb-2">Kontak</h6>
+
+          @foreach ($contacts as $contact)
+          <div class="text-center">
+            <a href="tel:{{ $contact->phone }}" class="text-secondary mx-auto mb-sm-0 mb-2">
+              <i class="fas fa-phone"></i>{{ $contact->name }}: {{ $contact->phone }}
+            </a>
+
+          </div>
+          @endforeach
+
         </div>
       </div>
       <div class="row">
-        <div class="col-8 mx-auto text-center mt-1">
+        <div class="col-8 mx-auto text-center mt-3">
           <div class="mt-3">
             <img src="{{ asset('img/logo.png') }}" alt="Logo 1" style="height:40px; margin-right:10px;">
             <img src="{{ asset('img/logo2.png') }}" alt="Logo 2" style="height:40px;">
