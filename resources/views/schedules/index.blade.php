@@ -85,7 +85,13 @@
                           {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
                         </td>
                         <td class="align-middle text-center text-sm">
-                          <span class="badge badge-sm bg-gradient-success">{{ $schedule->access_level }}</span>
+                          <span class="badge badge-sm 
+                          @if($schedule->access_level == 'PUBLIK')
+                            bg-gradient-success
+                          @elseif($schedule->access_level == 'RAHASIA')
+                            bg-gradient-danger
+                          @endif
+                          ">{{ $schedule->access_level }}</span>
                         </td>
                         
                         <td class="align-middle text-center text-sm">
