@@ -25,6 +25,13 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-2">
+              
+              @if(session('success'))
+                <div class="alert alert-success text-white" role="alert">
+                  <strong>Success!</strong> {{ session('success') }}
+                </div>
+              @endif
+
               <div class="row justify-content-center align-items-center">
                 <div class="col-6">
                   <h6>Daftar Agenda</h6>
@@ -106,7 +113,7 @@
                       </td>
 
                         <td class="align-middle">
-                          <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          <a href="{{ route('schedules.edit', $schedule) }}" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                             Ubah
                           </a>
 

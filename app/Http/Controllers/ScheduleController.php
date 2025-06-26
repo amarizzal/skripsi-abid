@@ -70,10 +70,14 @@ class ScheduleController extends Controller
             'disposition' => 'required|in:AGENDAKAN,DIWAKILI,DITUNDA,DIBATALKAN',
             'access_level' => 'required|in:PUBLIK,RAHASIA',
             'date' => 'required|date',
+            'time' => 'required|date_format:H:i',
             'file' => 'nullable|file',
         ]);
 
-        $data = $request->except('file');
+        $data = $request->except('file', 'date', 'time');
+
+        // Gabungkan menjadi datetime string
+        $data['date'] = $request->date . ' ' . $request->time;
 
         if ($request->hasFile('file')) {
             if ($schedule->file) {
