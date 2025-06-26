@@ -50,8 +50,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Event</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Place & Dresscode</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Disposition</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Access Level</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Audience</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Access Level & Audience</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">File</th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
@@ -92,9 +91,6 @@
                             bg-gradient-danger
                           @endif
                           ">{{ $schedule->access_level }}</span>
-                        </td>
-                        
-                        <td class="align-middle text-center text-sm">
                           <span class="badge badge-sm bg-gradient-success">{{ $schedule->audience }}</span>
                         </td>
 
