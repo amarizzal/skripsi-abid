@@ -61,7 +61,7 @@
                           </div> --}}
                           <div class="d-flex flex-column justify-content-center ms-2">
                             <h6 class="mb-0 text-sm">{{ $user->name }}</h6>
-                            <p class="text-xs text-secondary mb-0">{{ $user->email }}</p>
+                            <p class="text-xs text-secondary mb-0">{{ $user->username }}</p>
                           </div>
                         </div>
                       </td>
@@ -255,9 +255,9 @@
                   <form action="{{ route('users.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
                     @csrf
                     
-                    <label>Email</label>
+                    <label>Username</label>
                     <div class="input-group mb-3">
-                      <input required type="email" name="email" class="form-control" placeholder="Email" aria-label="Email">
+                      <input required type="text" name="username" class="form-control" placeholder="Username" aria-label="Username">
                     </div>
 
                     <label>Nama</label>

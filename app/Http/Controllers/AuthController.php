@@ -14,14 +14,14 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
             return redirect()->intended('/dashboard')->with('welcome', 'Selamat datang kembali!');;
         }
 
         return back()->withErrors([
-            'email' => 'Email or password incorrect.',
+            'username' => 'Username atau password salah.',
         ]);
     }
 

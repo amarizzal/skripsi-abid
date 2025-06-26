@@ -33,8 +33,8 @@
                   <input type="text" name="name" class="form-control" value="{{ $user->name }}" id="exampleFormControlInput1" placeholder="name@example.com">
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Email address</label>
-                  <input type="email" name="email" class="form-control" value="{{ $user->email }}" id="exampleFormControlInput1" placeholder="name@example.com">
+                  <label for="exampleFormControlInput1">Username</label>
+                  <input type="text" name="username" class="form-control" value="{{ $user->username }}" id="exampleFormControlInput1" placeholder="Username">
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Role</label>
