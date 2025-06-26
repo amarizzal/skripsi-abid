@@ -181,7 +181,12 @@
 
                     <label>Date</label>
                     <div class="input-group mb-3">
-                      <input name="date" class="form-control" type="datetime-local" value="2018-11-23" id="example-date-input">
+                      <input name="date" class="form-control" type="date" value="" id="example-date-input">
+                    </div>
+
+                    <label>Time</label>
+                    <div class="input-group mb-3">
+                      <input name="time" class="form-control" type="time" value="" id="example-date-input">
                     </div>
                     
                     <label>Event</label>
