@@ -190,6 +190,7 @@
     $('document').ready(function() {
       // hit alert
       @if(session('welcome'))
+      @if($schedulesTomorrow->count() > 0)
       Swal.fire({
         title: "<strong>Agenda Besok</strong>",
         icon: "info",
@@ -232,6 +233,7 @@
         `,
         confirmButtonAriaLabel: "Thumbs up, great!",
       });
+      @endif
       @endif
 
       var ctx1 = document.getElementById("chart-line").getContext("2d");
