@@ -53,9 +53,9 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Besok</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Satu bulan kedepan</p>
                     <h5 class="font-weight-bolder">
-                      {{ $schedulesTomorrow->count() }}
+                      {{ $schedulesNextMonth->count() }}
                     </h5>
                     <p class="mb-0">
                       {{-- <span class="text-success text-sm font-weight-bolder">+3%</span>
@@ -78,14 +78,15 @@
 
       
       <div class="row mt-4">
-        <div class="col-lg-5 mb-lg-0 mb-4">
-          <div class="card ">
+        {{-- HARI INI --}}
+        <div class="col-lg-5 mb-lg-0 mb-4 d-flex flex-column">
+          <div class="card flex-grow-1 d-flex flex-column">
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
                 <h6 class="mb-2">Hari ini</h6>
               </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive flex-grow-1">
               @if ($schedules->isEmpty())
                 <div class="text-center">
                   <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
@@ -96,18 +97,18 @@
                   <tbody>
                     @foreach ($schedules as $schedule)
                     <tr>
+                      <td>
+                        <div class="text-center">
+                          <p class="text-xs font-weight-bold mb-0">Time:</p>
+                          <h6 class="text-sm mb-0 text-danger">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</h6>
+                        </div>
+                      </td>
                       <td class="w-30">
                         <div class="d-flex px-2 py-1 align-items-center">
                           <div class="ms-4">
                             <p class="text-xs font-weight-bold mb-0">Agenda:</p>
-                            <h6 class="text-sm mb-0">{{ $schedule->content }}</h6>
+                            <h6 class="text-sm mb-0 text-primary">{{ $schedule->content }}</h6>
                           </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Time:</p>
-                          <h6 class="text-sm mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</h6>
                         </div>
                       </td>
                       <td>
@@ -124,15 +125,15 @@
                       </td>
                     </tr>
                     @endforeach
-                    
                   </tbody>
                 </table>
               @endif
             </div>
           </div>
         </div>
-        <div class="col-lg-7 mb-lg-0 mb-4">
-          <div class="card z-index-2 h-100">
+        {{-- GRAFIK --}}
+        <div class="col-lg-7 mb-lg-0 mb-4 d-flex flex-column">
+          <div class="card z-index-2 h-100 flex-grow-1 d-flex flex-column">
             <div class="card-header pb-0 pt-3 bg-transparent">
               <h6 class="text-capitalize">Grafik Agenda 1 Bulan terakhir</h6>
               {{-- <p class="text-sm mb-0">
@@ -140,15 +141,92 @@
                 <span class="font-weight-bold">4% more</span> in 2021
               </p> --}}
             </div>
-            <div class="card-body p-3">
-              <div class="chart">
+            <div class="card-body p-3 flex-grow-1 d-flex flex-column">
+              <div class="chart flex-grow-1">
                 <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
               </div>
             </div>
           </div>
         </div>
-        
       </div>
+
+      {{-- AGENDA BULAN DEPAN --}}
+      <div class="row mt-4">
+        <div class="col-12 mb-lg-0 mb-4 d-flex flex-column">
+          <div class="card flex-grow-1 d-flex flex-column">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">Satu bulan kedepan</h6>
+              </div>
+            </div>
+            <div class="table-responsive flex-grow-1">
+              @if ($schedulesNextMonth->isEmpty())
+                <div class="text-center">
+                  <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
+                  <p class="text-sm text-secondary">Belum ada agenda untuk satu bulan kedepan.</p>
+                </div>
+              @else
+                <table class="table align-items-center ">
+                  <tbody>
+                    <tr>
+                      <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">Waktu:</p>
+                          </div>
+                      </td>
+                      <td class="w-30">
+                        <div class="d-flex px-2 py-1 align-items-center">
+                          <div class="ms-4">
+                            <p class="text-xs font-weight-bold mb-0">Agenda:</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <p class="text-xs font-weight-bold mb-0">Tempat:</p>
+                        </div>
+                      </td>
+                      <td class="align-middle text-sm">
+                        <div class="col text-center">
+                          <p class="text-xs font-weight-bold mb-0">Audiens:</p>
+                        </div>
+                      </td>
+                    </tr>
+                    @foreach ($schedulesNextMonth as $schedule)
+                    <tr>
+                      <td>
+                          <div class="text-center">
+                            <h6 class="text-sm text-danger mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}  {{ \Carbon\Carbon::parse($schedule->date)->format('d/m/Y') }}</h6>
+                            <h6 class="text-sm text-danger mb-0"></h6>
+                          </div>
+                      </td>
+                      <td class="w-30">
+                        <div class="d-flex px-2 py-1 align-items-center">
+                          <div class="ms-4">
+                            <h6 class="text-sm mb-0 text-primary">{{ $schedule->content }}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <h6 class="text-sm mb-0">{{ $schedule->place }}</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle text-sm">
+                        <div class="col text-center">
+                          <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
+                        </div>
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              @endif
+            </div>
+          </div>
+        </div>
+      </div>
+
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">

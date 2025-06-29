@@ -12,12 +12,16 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // quick info today and tomorrow schedules
+        // quick info today and one month ahead schedules
         $today = Carbon::today();
         $tomorrow = Carbon::tomorrow();
+        $end = Carbon::tomorrow()->addMonth()->endOfDay();
         
         $schedules = Schedule::whereDate('date', $today)->orderBy('date', 'asc')->get();
-        $schedulesTomorrow = Schedule::whereDate('date', $tomorrow)->get();
+        $schedulesNextMonth = Schedule::whereDate('date', '>', $today)
+            ->whereDate('date', '<=', $end)
+            ->orderBy('date', 'asc')
+            ->get();
 
         // graph data for 1 month
         $startDate = Carbon::now()->subDays(30)->startOfDay();
@@ -46,8 +50,8 @@ class DashboardController extends Controller
 
             $current->addDay();
         }
-        
-        return view('dashboard', compact('schedules', 'schedulesTomorrow', 'chartData'));
+
+        return view('dashboard', compact('schedules', 'schedulesNextMonth', 'chartData'));
     }
     
     public function landingPage()

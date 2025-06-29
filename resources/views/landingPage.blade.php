@@ -163,11 +163,39 @@
                 <div class="table-responsive">
                   <table class="table align-items-start ">
                     <tbody>
-                      @foreach ($schedulesNextMonth as $schedule)
                       <tr>
                         <td>
                           <div class="text-center">
                             <p class="text-xs font-weight-bold mb-0">Waktu:</p>
+                          </div>
+                        </td>
+                        <td class="w-30">
+                          <div class="d-flex align-items-center">
+                            <div class="ms-4">
+                              <p class="text-xs font-weight-bold mb-0">Agenda:</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">Dresscode:</p>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">Tempat:</p>
+                          </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <div class="col text-center">
+                            <p class="text-xs font-weight-bold mb-0">Peserta:</p>
+                          </div>
+                        </td>
+                      </tr>
+                      @foreach ($schedulesNextMonth as $schedule)
+                      <tr>
+                        <td>
+                          <div class="text-center">
                             <h6 class="text-sm text-danger mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}  {{ \Carbon\Carbon::parse($schedule->date)->format('d/m/Y') }}</h6>
                             <h6 class="text-sm text-danger mb-0"></h6>
                           </div>
@@ -175,26 +203,22 @@
                         <td class="w-30">
                           <div class="d-flex align-items-center">
                             <div class="ms-4">
-                              <p class="text-xs font-weight-bold mb-0">Agenda:</p>
                               <h6 class=" mb-0 text-primary">{{ $schedule->content }}</h6>
                             </div>
                           </div>
                         </td>
                         <td>
                           <div class="text-center">
-                            <p class="text-xs font-weight-bold mb-0">Dresscode:</p>
                             <h6 class="text-sm mb-0">{{ $schedule->dresscode }}</h6>
                           </div>
                         </td>
                         <td>
                           <div class="text-center">
-                            <p class="text-xs font-weight-bold mb-0">Tempat:</p>
                             <h6 class="text-sm mb-0">{{ $schedule->place }}</h6>
                           </div>
                         </td>
                         <td class="align-middle text-sm">
                           <div class="col text-center">
-                            <p class="text-xs font-weight-bold mb-0">Peserta:</p>
                             <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
                           </div>
                         </td>
