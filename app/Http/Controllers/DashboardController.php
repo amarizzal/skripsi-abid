@@ -52,13 +52,17 @@ class DashboardController extends Controller
     
     public function landingPage()
     {
-        $today = Carbon::today();
-        $tomorrow = Carbon::tomorrow();
+        $today = Carbon::today()->startOfDay();
+        $start = Carbon::tomorrow()->startOfDay();
+        $end = Carbon::tomorrow()->addMonth()->endOfDay();
         
-        $schedules = Schedule::whereDate('date', $today)->orderBy('date', 'asc')->get();
-        $schedulesTomorrow = Schedule::whereDate('date', $tomorrow)->orderBy('date', 'asc')->get();
+        $schedules = Schedule::whereDate('date', '=', Carbon::today())->get();
+        $schedulesNextMonth = Schedule::whereDate('date', '>', $today)
+            ->whereDate('date', '<=', $end)
+            ->orderBy('date', 'asc')
+            ->get();
         $contacts = Contact::all();
 
-        return view('landingPage', compact('schedules', 'schedulesTomorrow', 'contacts'));
+        return view('landingPage', compact('schedules', 'schedulesNextMonth', 'contacts'));
     }
 }

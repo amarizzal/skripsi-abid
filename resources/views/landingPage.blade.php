@@ -151,24 +151,25 @@
                 <hr class="horizontal my-3" style="border-top: 2px solid #3e57e4;">
               <div class="card-header pb-0 p-3">
                 <div class="d-flex justify-content-between">
-                  <h6 class="mb-2">Besok</h6>
+                  <h6 class="mb-2">Satu bulan kedepan</h6>
                 </div>
               </div>
-              @if ($schedulesTomorrow->isEmpty())
+              @if ($schedulesNextMonth->isEmpty())
                 <div class="text-center">
                   <i class="ni ni-fat-remove ni-2x text-danger mb-1"></i>
-                  <p class="text-sm text-secondary">Belum ada agenda untuk besok.</p>
+                  <p class="text-sm text-secondary">Belum ada agenda untuk satu bulan kedepan.</p>
                 </div>
               @else
                 <div class="table-responsive">
                   <table class="table align-items-start ">
                     <tbody>
-                      @foreach ($schedulesTomorrow as $schedule)
+                      @foreach ($schedulesNextMonth as $schedule)
                       <tr>
                         <td>
                           <div class="text-center">
                             <p class="text-xs font-weight-bold mb-0">Waktu:</p>
-                            <h6 class="text-sm text-danger mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</h6>
+                            <h6 class="text-sm text-danger mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}  {{ \Carbon\Carbon::parse($schedule->date)->format('d/m/Y') }}</h6>
+                            <h6 class="text-sm text-danger mb-0"></h6>
                           </div>
                         </td>
                         <td class="w-30">
