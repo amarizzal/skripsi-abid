@@ -17,6 +17,7 @@ class Schedule extends Model
         'file',
         'diposition',
         'access_level',
-        'audience'
+        'audience',
+        'description'
     ];
 }

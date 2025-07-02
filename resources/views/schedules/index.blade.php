@@ -58,6 +58,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tempat & Dresscode</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Disposisi</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Level Akses & Peserta</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Keterangan</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">File</th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
@@ -100,6 +101,17 @@
                           ">{{ $schedule->access_level }}</span>
                           <span class="badge badge-sm bg-gradient-success">{{ $schedule->audience }}</span>
                         </td>
+
+                      <td class="align-middle text-center my-auto">
+                        {{-- Link-style show button --}}
+                        @if($schedule->description)
+                          <a href="" class="btn btn-primary my-auto" title="Show Description" data-bs-toggle="modal" data-bs-target="#descriptionModal{{ $schedule->id }}">
+                            <i class="ni ni-zoom-split-in"></i>
+                          </a>
+                        @else
+                          <span class="text-muted">-</span>
+                        @endif
+                      </td>
 
                       <td class="align-middle text-center my-auto">
                         {{-- Link-style download button --}}
@@ -211,6 +223,11 @@
                       <input name="dresscode" type="text" class="form-control" placeholder="Dresscode" aria-label="Dresscode" aria-describedby="email-addon" required>
                     </div>
 
+                    <label>Keterangan</label>
+                    <div class="input-group mb-3">
+                      <textarea name="description" class="form-control" placeholder="Keterangan" aria-label="Keterangan" aria-describedby="email-addon" required></textarea>
+                    </div>
+
                     <label>Disposition</label>
                     <div class="input-group mb-3">
                         <select name="disposition" id="role" class="form-control" required>
@@ -270,7 +287,23 @@
         </div>
       </div>
 
-    </div>
+      {{-- MODAL DESCRIPTION --}}
+      @foreach($schedules as $schedule)
+      <div class="modal fade" id="descriptionModal{{ $schedule->id }}" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel{{ $schedule->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="descriptionModalLabel{{ $schedule->id }}">{{ $schedule->content }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>{{ $schedule->description }}</p> 
+
+            </div>
+          </div>
+        </div>
+      </div>
+      @endforeach
   </main>
   
 @endsection

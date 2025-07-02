@@ -24,6 +24,7 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'place' => 'required|string',
+            'description' => 'nullable|string',
             'content' => 'required|string',
             'dresscode' => 'required|string',
             'audience' => 'required|in:INTERNAL,EKSTERNAL',
