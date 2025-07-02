@@ -31,7 +31,7 @@ class ScheduleController extends Controller
             'access_level' => 'required|in:PUBLIK,RAHASIA',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
-            'file' => 'required|file',
+            'file' => 'nullable|file',
         ]);
 
         $data = $request->except(['file', 'date', 'time']);
@@ -41,6 +41,8 @@ class ScheduleController extends Controller
 
         if ($request->hasFile('file')) {
             $data['file'] = $request->file('file')->store('schedules', 'public');
+        } else {
+            $data['file'] = null;
         }
 
         Schedule::create($data);

@@ -188,27 +188,27 @@
 
                     <label>Tanggal</label>
                     <div class="input-group mb-3">
-                      <input name="date" class="form-control" type="date" value="" id="example-date-input">
+                      <input name="date" class="form-control" type="date" value="" id="example-date-input" required>
                     </div>
 
                     <label>Jam</label>
                     <div class="input-group mb-3">
-                      <input name="time" class="form-control" type="time" value="" id="example-date-input">
+                      <input name="time" class="form-control" type="time" value="" id="example-date-input" required>
                     </div>
                     
                     <label>Agenda</label>
                     <div class="input-group mb-3">
-                      <input name="content" type="text" class="form-control" placeholder="Nama agenda" aria-label="Name" aria-describedby="name-addon">
+                      <input name="content" type="text" class="form-control" placeholder="Nama agenda" aria-label="Name" aria-describedby="name-addon" required>
                     </div>
 
                     <label>Tempat</label>
                     <div class="input-group mb-3">
-                      <input name="place" type="text" class="form-control" placeholder="Nama tempat" aria-label="Place" aria-describedby="email-addon">
+                      <input name="place" type="text" class="form-control" placeholder="Nama tempat" aria-label="Place" aria-describedby="email-addon" required>
                     </div>
 
                     <label>Dresscode</label>
                     <div class="input-group mb-3">
-                      <input name="dresscode" type="text" class="form-control" placeholder="Dresscode" aria-label="Dresscode" aria-describedby="email-addon">
+                      <input name="dresscode" type="text" class="form-control" placeholder="Dresscode" aria-label="Dresscode" aria-describedby="email-addon" required>
                     </div>
 
                     <label>Disposition</label>
@@ -229,7 +229,7 @@
                         </select>
                     </div>
 
-                    <label>Pesserta</label>
+                    <label>Peserta</label>
                     <div class="input-group mb-3">
                         <select name="audience" id="role" class="form-control" required>
                           <option value="" selected disabled>Pilih peserta</option>
@@ -238,17 +238,21 @@
                         </select>
                     </div>
 
+
                     <label>File</label>
-                    <div class="input-group mb-3">
-                      <input name="file" class="form-control" type="file">
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
+                      <label class="custom-control-label" for="customRadio1">Dengan File</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2">
+                      <label class="custom-control-label" for="customRadio2">Tanpa File</label>
                     </div>
                     
-                    {{-- <div class="form-check form-check-info text-left">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked="">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        I agree the <a href="javascrpt:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
-                      </label>
-                    </div> --}}
+                    <div class="input-group mb-3" id="fileInputGroup">
+                      <input name="file" class="form-control" type="file" id="fileInput">
+                    </div>
+                    
                     <div class="text-center mb-3">
                       <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Tambah</button>
                     </div>
@@ -269,4 +273,33 @@
     </div>
   </main>
   
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const radioWithFile = document.getElementById('customRadio1');
+      const radioWithoutFile = document.getElementById('customRadio2');
+      const fileInputGroup = document.getElementById('fileInputGroup');
+      const fileInput = document.getElementById('fileInput');
+
+      // Function to toggle file input visibility
+      function toggleFileInput() {
+        if (radioWithFile.checked) {
+          fileInputGroup.style.display = 'flex';
+          fileInput.required = true;
+        } else {
+          fileInputGroup.style.display = 'none';
+          fileInput.required = false;
+        }
+      }
+
+      // Initial check on page load
+      toggleFileInput();
+
+      // Add event listeners
+      radioWithFile.addEventListener('change', toggleFileInput);
+      radioWithoutFile.addEventListener('change', toggleFileInput);
+    });
+</script>
 @endsection
