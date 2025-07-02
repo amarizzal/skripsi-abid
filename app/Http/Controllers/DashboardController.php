@@ -22,6 +22,7 @@ class DashboardController extends Controller
             ->whereDate('date', '<=', $end)
             ->orderBy('date', 'asc')
             ->get();
+        $schedulesTomorrow = Schedule::whereDate('date', $tomorrow)->get();
 
         // graph data for 1 month
         $startDate = Carbon::now()->subDays(30)->startOfDay();
