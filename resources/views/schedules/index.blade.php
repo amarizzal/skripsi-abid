@@ -42,11 +42,21 @@
               @endif
 
               <div class="row justify-content-center align-items-center">
-                <div class="col-6">
+                <div class="col-auto">
                   <h6>Daftar Agenda</h6>
-                  
                 </div>
-                <div class="col-6 text-end">
+                <div class="col-md-4 col-12 d-flex align-items-center mx-auto">
+                  <select name="filter" id="filter" class="form-control d-inline-block ml-3">
+                    <option value="" selected disabled>Filter disposition</option>
+                    <option value="all">Semua</option>
+                    <option value="MENUNGGU DIKONFIRMASI">Menunggu Dikonfirmasi</option>
+                    <option value="AGENDAKAN">Agendakan</option>
+                    <option value="DIWAKILI">Diwakili</option>
+                    <option value="DITUNDA">Ditunda</option>
+                    <option value="DIBATALKAN">Dibatalkan</option> 
+                  </select>
+                </div>
+                <div class="col-md-6 col-12 text-end">
                   <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn btn-success mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Tambah Agenda Baru</button>
                 </div>
               </div>
@@ -59,7 +69,7 @@
                 </div>
               @else
                 <div class="table-responsive p-0">
-                  <table class="table align-items-center mb-0">
+                  <table class="table align-items-center mb-0" id="table">
                     <thead>
                       <tr>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal & Waktu</th>
@@ -97,7 +107,7 @@
                           </div>
                         </td>
                         <td>
-                          <p class="text-xs font-weight-bold mb-0
+                          <p class="text-xs font-weight-bold mb-0 disposition-text
                           @if ($schedule->disposition == 'MENUNGGU DIKONFIRMASI')
                             text-primary
                           @elseif ($schedule->disposition == 'AGENDAKAN')
@@ -178,27 +188,11 @@
               <div class="copyright text-center text-sm text-muted text-lg-start">
                 © <script>
                   document.write(new Date().getFullYear())
-                </script>,
-                made with  <i class="fa fa-heart"></i>
+                </script>
                  
               </div>
             </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
-            </div>
+            
           </div>
         </div>
       </footer>
@@ -325,6 +319,8 @@
       const radioWithoutFile = document.getElementById('customRadio2');
       const fileInputGroup = document.getElementById('fileInputGroup');
       const fileInput = document.getElementById('fileInput');
+      const table = document.getElementById('table');
+      const dispositionText = document.querySelectorAll('.disposition-text');
 
       // Function to toggle file input visibility
       function toggleFileInput() {
@@ -343,6 +339,25 @@
       // Add event listeners
       radioWithFile.addEventListener('change', toggleFileInput);
       radioWithoutFile.addEventListener('change', toggleFileInput);
+
+      // Filter table
+      const filter = document.getElementById('filter');
+      filter.addEventListener('change', function() {
+        const value = filter.value;
+        table.querySelectorAll('tbody tr').forEach(tr => {
+          const dispositionCell = tr.querySelector('.disposition-text');
+          if (!dispositionCell) return;
+          const text = dispositionCell.textContent.trim();
+
+          if (value === 'all') {
+            tr.style.display = 'table-row';
+          } else if (text === value) {
+            tr.style.display = 'table-row';
+          } else {
+            tr.style.display = 'none';
+          }
+        });
+      });
     });
 </script>
 @endsection
