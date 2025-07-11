@@ -26,6 +26,15 @@
               <h6>Ubah Agenda</h6>
             </div>
             <div class="card-body pt-0 pb-2 ">
+              @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
               <form method="POST" action="{{ route('schedules.update', $schedule->id) }}">
                 @csrf @method('PUT')
                 <label>Tanggal</label>
@@ -57,8 +66,11 @@
                 <div class="input-group mb-3">
                     <select name="disposition" id="role" class="form-control" required>
                       <option value="" selected disabled>Select disposition</option>
+                      <option value="MENUNGGU DIKONFIRMASI" {{ $schedule->disposition == 'MENUNGGU DIKONFIRMASI' ? 'selected' : '' }}>Menunggu Dikonfirmasi</option>
                       <option value="AGENDAKAN" {{ $schedule->disposition == 'AGENDAKAN' ? 'selected' : '' }}>Agendakan</option>
                       <option value="DIWAKILI" {{ $schedule->disposition == 'DIWAKILI' ? 'selected' : '' }}>Diwakili</option>
+                      <option value="DITUNDA" {{ $schedule->disposition == 'DITUNDA' ? 'selected' : '' }}>Ditunda</option>
+                      <option value="DIBATALKAN" {{ $schedule->disposition == 'DIBATALKAN' ? 'selected' : '' }}>Dibatalkan</option>
                     </select>
                 </div>
 

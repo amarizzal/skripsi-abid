@@ -28,17 +28,18 @@ class ScheduleController extends Controller
             'content' => 'required|string',
             'dresscode' => 'required|string',
             'audience' => 'required|in:INTERNAL,EKSTERNAL',
-            'disposition' => 'required|in:AGENDAKAN,DIWAKILI,DITUNDA,DIBATALKAN',
+            // 'disposition' => 'required|in:AGENDAKAN,DIWAKILI,DITUNDA,DIBATALKAN',
             'access_level' => 'required|in:PUBLIK,RAHASIA',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
             'file' => 'nullable|file',
         ]);
 
-        $data = $request->except(['file', 'date', 'time']);
+        $data = $request->except(['file', 'date', 'time', 'disposition']);
 
         // Gabungkan menjadi datetime string
         $data['date'] = $request->date . ' ' . $request->time;
+        $data['disposition'] = 'MENUNGGU KONFIRMASI'; // Default disposition
 
         if ($request->hasFile('file')) {
             $data['file'] = $request->file('file')->store('schedules', 'public');
@@ -46,7 +47,12 @@ class ScheduleController extends Controller
             $data['file'] = null;
         }
 
-        Schedule::create($data);
+        try {
+
+            Schedule::create($data);
+        } catch (\Exception $e) {
+            return redirect()->route('schedules.index')->with('error', 'Failed to create schedule: ' . $e->getMessage());
+        }
 
         // dd($request->all());
 
@@ -70,17 +76,18 @@ class ScheduleController extends Controller
             'content' => 'required|string',
             'dresscode' => 'required|string',
             'audience' => 'required|in:INTERNAL,EKSTERNAL',
-            'disposition' => 'required|in:AGENDAKAN,DIWAKILI,DITUNDA,DIBATALKAN',
+            'disposition' => 'required|in:MENUNGGU DIKONFIRMASI,AGENDAKAN,DIWAKILI,DITUNDA,DIBATALKAN',
             'access_level' => 'required|in:PUBLIK,RAHASIA',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
             'file' => 'nullable|file',
         ]);
 
-        $data = $request->except('file', 'date', 'time');
+        $data = $request->except('file', 'date', 'time', 'disposition');
 
         // Gabungkan menjadi datetime string
         $data['date'] = $request->date . ' ' . $request->time;
+        $data['disposition'] = $request->disposition;
 
         if ($request->hasFile('file')) {
             if ($schedule->file) {
@@ -90,6 +97,7 @@ class ScheduleController extends Controller
         }
 
         $schedule->update($data);
+        // dd($data);
 
         return redirect()->route('schedules.index')->with('success', 'Schedule updated successfully.');
     }

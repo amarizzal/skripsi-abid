@@ -31,6 +31,15 @@
                   <strong>Success!</strong> {{ session('success') }}
                 </div>
               @endif
+              @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
 
               <div class="row justify-content-center align-items-center">
                 <div class="col-6">
@@ -88,7 +97,17 @@
                           </div>
                         </td>
                         <td>
-                          <p class="text-xs font-weight-bold mb-0">{{ $schedule->disposition }}</p>
+                          <p class="text-xs font-weight-bold mb-0
+                          @if ($schedule->disposition == 'MENUNGGU DIKONFIRMASI')
+                            text-primary
+                          @elseif ($schedule->disposition == 'AGENDAKAN')
+                            text-success
+                          @elseif ($schedule->disposition == 'DIWAKILI')
+                            text-warning
+                          @elseif ($schedule->disposition == 'DITUNDA' || $schedule->disposition == 'DIBATALKAN')
+                            text-danger
+                          @endif
+                          ">{{ $schedule->disposition }}</p>
                           {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
                         </td>
                         <td class="align-middle text-center text-sm">
@@ -226,15 +245,6 @@
                     <label>Keterangan</label>
                     <div class="input-group mb-3">
                       <textarea name="description" class="form-control" placeholder="Keterangan" aria-label="Keterangan" aria-describedby="email-addon" required></textarea>
-                    </div>
-
-                    <label>Disposition</label>
-                    <div class="input-group mb-3">
-                        <select name="disposition" id="role" class="form-control" required>
-                          <option value="" selected disabled>Select disposition</option>
-                          <option value="AGENDAKAN">Agendakan</option>
-                          <option value="DIWAKILI">Diwakili</option>
-                        </select>
                     </div>
 
                     <label>Level Akses</label>

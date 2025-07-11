@@ -15,7 +15,7 @@ class Schedule extends Model
         'place',
         'dresscode',
         'file',
-        'diposition',
+        'disposition',
         'access_level',
         'audience',
         'description'
