@@ -52,7 +52,7 @@ class DashboardController extends Controller
             $current->addDay();
         }
 
-        return view('dashboard', compact('schedules', 'schedulesNextMonth', 'chartData'));
+        return view('dashboard', compact('schedules', 'schedulesNextMonth', 'chartData', 'schedulesTomorrow'));
     }
     
     public function landingPage()
