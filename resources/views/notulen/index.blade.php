@@ -99,13 +99,9 @@
 
                       <td class="align-middle text-center my-auto">
                         {{-- Link-style download button --}}
-                        @if($notulen->file)
-                          <a href="{{ route('notulens.downloadPDF', $notulen) }}" class="btn btn-primary my-auto" title="Download File">
+                          <a href="{{ route('notulens.downloadPDF', $notulen) }}" class="btn btn-success my-auto" title="Download File">
                             <i class="ni ni-single-copy-04"></i>
                           </a>
-                        @else
-                          <span class="text-muted">-</span>
-                        @endif
                       </td>
 
                         <td class="align-middle">
@@ -178,20 +174,6 @@
                       <textarea name="content" class="form-control" placeholder="Notulen" aria-label="Notulen" aria-describedby="email-addon" required></textarea>
                     </div>
 
-
-                    <label>File</label>
-                    <div class="form-check mb-3">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
-                      <label class="custom-control-label" for="customRadio1">Dengan File</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2">
-                      <label class="custom-control-label" for="customRadio2">Tanpa File</label>
-                    </div>
-                    
-                    <div class="input-group mb-3" id="fileInputGroup">
-                      <input name="file" class="form-control" type="file" id="fileInput">
-                    </div>
                     
                     <div class="text-center mb-3">
                       @if($schedules->count() > 0)
