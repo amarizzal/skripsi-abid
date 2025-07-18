@@ -35,7 +35,7 @@
                       </ul>
                   </div>
               @endif
-              <form method="POST" action="{{ route('schedules.update', $schedule->id) }}">
+              <form method="POST" action="{{ route('schedules.update', $schedule->id) }}" enctype="multipart/form-data" lang="id">
                 @csrf @method('PUT')
                 <label>Tanggal</label>
                 <div class="input-group mb-3">
