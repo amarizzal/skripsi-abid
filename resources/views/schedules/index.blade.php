@@ -74,6 +74,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Agenda</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tempat & Dresscode</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Disposisi</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ubah Disposisi</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Level Akses & Peserta</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Keterangan</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">File</th>
@@ -105,7 +106,8 @@
                           </div>
                         </td>
                         <td>
-                          <p class="text-xs font-weight-bold mb-0 disposition-text
+                          
+                          <span class="text-xs font-weight-bold mb-0 disposition-text
                           @if ($schedule->disposition == 'MENUNGGU DIKONFIRMASI')
                             text-primary
                           @elseif ($schedule->disposition == 'AGENDAKAN')
@@ -115,8 +117,13 @@
                           @elseif ($schedule->disposition == 'DITUNDA' || $schedule->disposition == 'DIBATALKAN')
                             text-danger
                           @endif
-                          ">{{ $schedule->disposition }}</p>
+                          ">{{ $schedule->disposition }}</span>
                           {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
+                        </td>
+                        <td>
+                          <a href="" class="btn btn-warning my-auto" title="Show Description" data-bs-toggle="modal" data-bs-target="#dispositionModal{{ $schedule->id }}">
+                            <i class="ni ni-settings"></i>
+                          </a>
                         </td>
                         <td class="align-middle text-center text-sm">
                           <span class="badge badge-sm 
@@ -301,6 +308,50 @@
             <div class="modal-body">
               <p>{{ $schedule->description }}</p> 
 
+            </div>
+          </div>
+        </div>
+      </div>
+      @endforeach
+
+      {{-- MODAL DISPOSITION --}}
+      @foreach($schedules as $schedule)
+      <div class="modal fade" id="dispositionModal{{ $schedule->id }}" tabindex="-1" role="dialog" aria-labelledby="dispositionModalLabel{{ $schedule->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-body p-0">
+              <div class="card card-plain">
+                <div class="card-header pb-0 text-left">
+                    <h5 class="font-weight-bolder text-primary text-gradient">Ubah Disposisi</h5>
+                    <p class="mb-0">Ubah disposisi agenda</p>
+                </div>
+                <div class="card-body pb-3">
+                  <form method="POST" action="{{ route('schedules.updateDisposition', $schedule->id) }}"  lang="id">
+                    @csrf @method('PUT')
+                   
+    
+                    <label>Disposisi</label>
+                    <div class="input-group mb-3">
+                        <select name="disposition" id="role" class="form-control" required>
+                          <option value="" selected disabled>Pilih disposisi</option>
+                          <option value="MENUNGGU DIKONFIRMASI" {{ $schedule->disposition == 'MENUNGGU DIKONFIRMASI' ? 'selected' : '' }}>Menunggu Dikonfirmasi</option>
+                          <option value="AGENDAKAN" {{ $schedule->disposition == 'AGENDAKAN' ? 'selected' : '' }}>Agendakan</option>
+                          <option value="DIWAKILI" {{ $schedule->disposition == 'DIWAKILI' ? 'selected' : '' }}>Diwakili</option>
+                          <option value="DITUNDA" {{ $schedule->disposition == 'DITUNDA' ? 'selected' : '' }}>Ditunda</option>
+                          <option value="DIBATALKAN" {{ $schedule->disposition == 'DIBATALKAN' ? 'selected' : '' }}>Dibatalkan</option>
+                        </select>
+                    </div>
+    
+                    <button type="submit" class="btn bg-gradient-primary mt-3">Submit</button>
+                  </form>
+                </div>
+                {{-- <div class="card-footer text-center pt-0 px-sm-4 px-1">
+                  <p class="mb-4 mx-auto">
+                    Already have an account?
+                    <a href="javascrpt:;" class="text-primary text-gradient font-weight-bold">Sign in</a>
+                  </p>
+                </div> --}}
+              </div>
             </div>
           </div>
         </div>

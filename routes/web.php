@@ -31,6 +31,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('schedules', ScheduleController::class)->middleware('auth');
+Route::put('schedules/{schedule}/disposition', [ScheduleController::class, 'updateDisposition'])->name('schedules.updateDisposition')->middleware('auth');
 Route::resource('notulens', NotulenController::class)->middleware('auth');
 Route::resource('contact', ContactController::class)->middleware('auth');
 

@@ -101,6 +101,22 @@ class ScheduleController extends Controller
         return redirect()->route('schedules.index')->with('success', 'Schedule updated successfully.');
     }
 
+    public function updateDisposition(Request $request, Schedule $schedule)
+    {
+        $request->validate([
+            'disposition' => 'required|in:MENUNGGU DIKONFIRMASI,AGENDAKAN,DIWAKILI,DITUNDA,DIBATALKAN',
+        ]);
+
+        $data = $request->except('disposition');
+
+        // Gabungkan menjadi datetime string
+        $data['disposition'] = $request->disposition;
+
+        $schedule->update($data);
+
+        return redirect()->route('schedules.index')->with('success', 'Schedule disposisi berhasil diubah.');
+    }
+
     public function destroy(Schedule $schedule)
     {
         if ($schedule->file) {
