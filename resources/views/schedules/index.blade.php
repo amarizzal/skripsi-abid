@@ -206,7 +206,7 @@
                     <p class="mb-0">Masukkan keterangan agenda</p>
                 </div>
                 <div class="card-body pb-3">
-                  <form action="{{ route('schedules.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
+                  <form action="{{ route('schedules.store') }}" method="POST" role="form text-left" enctype="multipart/form-data" lang="id">
                     @csrf
 
                     <label>Tanggal</label>
