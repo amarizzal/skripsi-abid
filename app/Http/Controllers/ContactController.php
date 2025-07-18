@@ -29,7 +29,7 @@ class ContactController extends Controller
         ]);
 
         $contact = Contact::create($validated);
-        return redirect()->route('contact.index')->with('success', 'Contact created successfully.');
+        return redirect()->route('contact.index')->with('success', 'Kontak berhasil ditambahkan.');
     }
 
     // Display the specified contact
@@ -57,7 +57,7 @@ class ContactController extends Controller
         ]);
 
         $contact->update($validated);
-        return redirect()->route('contact.index')->with('success', 'Contact updated successfully.');
+        return redirect()->route('contact.index')->with('success', 'Kontak berhasil diubah.');
     }
 
     // Remove the specified contact
@@ -66,6 +66,6 @@ class ContactController extends Controller
         $contact = Contact::findOrFail($id);
         $contact->delete();
 
-        return redirect()->route('contact.index')->with('success', 'Contact deleted successfully.');
+        return redirect()->route('contact.index')->with('success', 'Kontak berhasil dihapus.');
     }
 }

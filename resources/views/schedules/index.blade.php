@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-4 col-12 d-flex align-items-center mx-auto">
                   <select name="filter" id="filter" class="form-control d-inline-block ml-3">
-                    <option value="" selected disabled>Filter disposition</option>
+                    <option value="" selected disabled>Pilih disposisi</option>
                     <option value="all">Semua</option>
                     <option value="MENUNGGU DIKONFIRMASI">Menunggu Dikonfirmasi</option>
                     <option value="AGENDAKAN">Agendakan</option>

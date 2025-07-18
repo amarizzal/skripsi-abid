@@ -23,7 +23,7 @@
             <div class="card-header pb-0">
               @if(session('success'))
                 <div class="alert alert-success text-white" role="alert">
-                  <strong>Success!</strong> {{ session('success') }}
+                  <strong>Berhasil!</strong> {{ session('success') }}
                 </div>
               @endif
               <div class="row justify-content-center align-items-center">

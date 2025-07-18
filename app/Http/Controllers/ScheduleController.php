@@ -55,7 +55,7 @@ class ScheduleController extends Controller
         }
 
 
-        return redirect()->route('schedules.index')->with('success', 'Schedule created successfully.');
+        return redirect()->route('schedules.index')->with('success', 'Agenda berhasil ditambahkan.');
     }
 
     public function show(Schedule $schedule)
@@ -98,7 +98,7 @@ class ScheduleController extends Controller
         $schedule->update($data);
         // dd($data);
 
-        return redirect()->route('schedules.index')->with('success', 'Schedule updated successfully.');
+        return redirect()->route('schedules.index')->with('success', 'Agenda berhasil diubah.');
     }
 
     public function updateDisposition(Request $request, Schedule $schedule)
@@ -114,7 +114,7 @@ class ScheduleController extends Controller
 
         $schedule->update($data);
 
-        return redirect()->route('schedules.index')->with('success', 'Schedule disposisi berhasil diubah.');
+        return redirect()->route('schedules.index')->with('success', 'Disposisi agenda berhasil diubah.');
     }
 
     public function destroy(Schedule $schedule)
@@ -125,6 +125,6 @@ class ScheduleController extends Controller
 
         $schedule->delete();
 
-        return redirect()->route('schedules.index')->with('success', 'Schedule deleted successfully.');
+        return redirect()->route('schedules.index')->with('success', 'Agenda berhasil dihapus.');
     }
 }

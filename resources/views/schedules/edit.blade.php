@@ -65,7 +65,7 @@
                 <label>Disposition</label>
                 <div class="input-group mb-3">
                     <select name="disposition" id="role" class="form-control" required>
-                      <option value="" selected disabled>Select disposition</option>
+                      <option value="" selected disabled>Pilih disposisi</option>
                       <option value="MENUNGGU DIKONFIRMASI" {{ $schedule->disposition == 'MENUNGGU DIKONFIRMASI' ? 'selected' : '' }}>Menunggu Dikonfirmasi</option>
                       <option value="AGENDAKAN" {{ $schedule->disposition == 'AGENDAKAN' ? 'selected' : '' }}>Agendakan</option>
                       <option value="DIWAKILI" {{ $schedule->disposition == 'DIWAKILI' ? 'selected' : '' }}>Diwakili</option>

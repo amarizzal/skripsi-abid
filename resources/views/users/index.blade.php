@@ -25,7 +25,7 @@
 
               @if(session('success'))
                 <div class="alert alert-success text-white" role="alert">
-                  <strong>Success!</strong> {{ session('success') }}
+                  <strong>Berhasil!</strong> {{ session('success') }}
                 </div>
               @endif
 
