@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Notulen;
 use App\Models\Schedule;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class NotulenController extends Controller
 {
@@ -41,5 +42,12 @@ class NotulenController extends Controller
     {
         $notulen->delete();
         return redirect()->route('notulens.index')->with('success', 'Notulen berhasil dihapus');
+    }
+
+    public function downloadPDF(Notulen $notulen)
+    {
+        $notulen = Notulen::with('schedule')->find($notulen->id);
+        $pdf = Pdf::loadView('notulen.pdf', compact('notulen'));
+        return $pdf->download($notulen->schedule->content . ' - NOTULEN.pdf');
     }
 }

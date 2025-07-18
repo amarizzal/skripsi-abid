@@ -65,7 +65,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Agenda, Waktu, Tempat</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Konten</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">File</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Download PDF</th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
                     </thead>
@@ -100,7 +100,7 @@
                       <td class="align-middle text-center my-auto">
                         {{-- Link-style download button --}}
                         @if($notulen->file)
-                          <a href="{{ asset('storage/notulen/' . $notulen->file) }}" class="btn btn-primary my-auto" download title="Download File">
+                          <a href="{{ route('notulens.downloadPDF', $notulen) }}" class="btn btn-primary my-auto" title="Download File">
                             <i class="ni ni-single-copy-04"></i>
                           </a>
                         @else

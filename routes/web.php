@@ -33,5 +33,6 @@ Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('schedules', ScheduleController::class)->middleware('auth');
 Route::put('schedules/{schedule}/disposition', [ScheduleController::class, 'updateDisposition'])->name('schedules.updateDisposition')->middleware('auth');
 Route::resource('notulens', NotulenController::class)->middleware('auth');
+Route::get('notulens/{notulen}/download', [NotulenController::class, 'downloadPDF'])->name('notulens.downloadPDF')->middleware('auth');
 Route::resource('contact', ContactController::class)->middleware('auth');
 
