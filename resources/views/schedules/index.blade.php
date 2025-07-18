@@ -31,12 +31,10 @@
                   <strong>Success!</strong> {{ session('success') }}
                 </div>
               @endif
-              @if ($errors->any())
+              @if (session('error') )
                   <div class="alert alert-danger">
                       <ul>
-                          @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                          @endforeach
+                        <strong>Error!</strong> {{ session('error') }}
                       </ul>
                   </div>
               @endif

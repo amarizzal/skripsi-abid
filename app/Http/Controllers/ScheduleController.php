@@ -39,22 +39,21 @@ class ScheduleController extends Controller
 
         // Gabungkan menjadi datetime string
         $data['date'] = $request->date . ' ' . $request->time;
-        $data['disposition'] = 'MENUNGGU KONFIRMASI'; // Default disposition
+        $data['disposition'] = 'MENUNGGU DIKONFIRMASI'; // Default disposition
 
         if ($request->hasFile('file')) {
             $data['file'] = $request->file('file')->store('schedules', 'public');
         } else {
-            $data['file'] = null;
+            // $data['file'] = null;
         }
 
+        
         try {
-
             Schedule::create($data);
         } catch (\Exception $e) {
             return redirect()->route('schedules.index')->with('error', 'Failed to create schedule: ' . $e->getMessage());
         }
 
-        // dd($request->all());
 
         return redirect()->route('schedules.index')->with('success', 'Schedule created successfully.');
     }
