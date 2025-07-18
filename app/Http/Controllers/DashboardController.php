@@ -61,9 +61,10 @@ class DashboardController extends Controller
         $start = Carbon::tomorrow()->startOfDay();
         $end = Carbon::tomorrow()->addMonth()->endOfDay();
         
-        $schedules = Schedule::whereDate('date', '=', Carbon::today())->get();
+        $schedules = Schedule::whereDate('date', '=', Carbon::today())->where('access_level', 'PUBLIK')->get();
         $schedulesNextMonth = Schedule::whereDate('date', '>', $today)
             ->whereDate('date', '<=', $end)
+            ->where('access_level', 'PUBLIK')
             ->orderBy('date', 'asc')
             ->get();
         $contacts = Contact::all();
