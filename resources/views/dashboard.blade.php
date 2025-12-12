@@ -74,6 +74,7 @@
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
                 <h6 class="mb-2">Hari ini</h6>
+                <p class="text-sm"><span class="text-danger">{{ \Carbon\Carbon::now()->locale('id')->translatedFormat('l, d F Y') }}</span></p>
               </div>
             </div>
             <div class="table-responsive flex-grow-1">
