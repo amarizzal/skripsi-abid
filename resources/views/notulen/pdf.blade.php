@@ -20,8 +20,20 @@
   </head>
 
 <body>
+  <div class="header" style="text-align: center; margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px;">
+        <img src="{{ public_path('img/logo.png') }}" alt="Logo" style="width: 100px; height: auto;">
+        
+        <div style="display: inline-block; vertical-align: top; margin-left: 20px; text-align: left;">
+            <h2 style="margin: 0;">PEMERINTAH KABUPATEN MALANG</h2>
+            <h3 style="margin: 0; font-size: 16px;">SEKRETARIAT DAERAH KABUPATEN MALANG</h3>
+            <p style="margin: 0; font-size: 12px;">Jalan Panji No. 158 Kepanjen, Kabupaten Malang, Telp 0341 392024, Website Malangkab.go.id</p>
+        </div>
+    </div>
     <h2>Notulen: {{ $notulen->schedule->content }}</h2>
     <h4 class="text-primary">{{ \Carbon\Carbon::parse($notulen->schedule->date)->format('d/m/Y') }} - {{ \Carbon\Carbon::parse($notulen->schedule->date)->format('H:i') }}</h4>
+    <h4 class="text-secondary">
+        <strong>Tempat:</strong> {{ $notulen->schedule->place ?? 'Tempat tidak ditentukan' }}
+    </h4>
 
     <br><br>
 
