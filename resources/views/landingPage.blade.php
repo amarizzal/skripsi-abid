@@ -143,7 +143,7 @@
                       <tr>
                         <td>
                           <div class="text-center">
-                            <p class="text-xs font-weight-bold mb-0">Time:</p>
+                            <p class="text-xs font-weight-bold mb-0">Waktu:</p>
                             <h6 class="text-sm text-danger mb-0">{{ \Carbon\Carbon::parse($schedule->date)->format('H:i') }}</h6>
                           </div>
                         </td>
@@ -157,19 +157,19 @@
                         </td>
                         <td>
                           <div class="text-center">
-                            <p class="text-xs font-weight-bold mb-0">Dresscode:</p>
+                            <p class="text-xs font-weight-bold mb-0">Pakaian:</p>
                             <h6 class="text-sm mb-0">{{ $schedule->dresscode }}</h6>
                           </div>
                         </td>
                         <td>
                           <div class="text-center">
-                            <p class="text-xs font-weight-bold mb-0">Place:</p>
+                            <p class="text-xs font-weight-bold mb-0">Tempat:</p>
                             <h6 class="text-sm mb-0">{{ $schedule->place }}</h6>
                           </div>
                         </td>
                         <td class="align-middle text-sm">
                           <div class="col text-center">
-                            <p class="text-xs font-weight-bold mb-0">Audience:</p>
+                            <p class="text-xs font-weight-bold mb-0">Peserta:</p>
                             <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
                           </div>
                         </td>
@@ -212,7 +212,7 @@
                         </td>
                         <td>
                           <div class="text-center">
-                            <p class="text-xs font-weight-bold mb-0">Dresscode:</p>
+                            <p class="text-xs font-weight-bold mb-0">Pakaian:</p>
                           </div>
                         </td>
                         <td>
@@ -222,7 +222,7 @@
                         </td>
                         <td class="align-middle text-sm">
                           <div class="col text-center">
-                            <p class="text-xs font-weight-bold mb-0">Peserta:</p>
+                            <p class="text-xs font-weight-bold mb-0">Disposisi:</p>
                           </div>
                         </td>
                       </tr>
@@ -253,7 +253,7 @@
                         </td>
                         <td class="align-middle text-sm">
                           <div class="col text-center">
-                            <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
+                            <h6 class="text-sm mb-0">{{ $schedule->disposition }}</h6>
                           </div>
                         </td>
                       </tr>

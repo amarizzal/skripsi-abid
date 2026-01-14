@@ -51,7 +51,7 @@ class ScheduleController extends Controller
         try {
             Schedule::create($data);
         } catch (\Exception $e) {
-            return redirect()->route('schedules.index')->with('error', 'Failed to create schedule: ' . $e->getMessage());
+            return redirect()->route('schedules.index')->with('error', 'Agenda gagal ditambahkan. ' . $e->getMessage());
         }
 
 
