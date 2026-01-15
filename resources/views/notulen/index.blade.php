@@ -105,6 +105,9 @@
                       </td>
 
                         <td class="align-middle">
+                          <a href="{{ route('notulens.edit', $notulen) }}" class="text-warning font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit Notulen">
+                            Ubah
+                          </a>
 
                           <!-- Link-style delete using a tag -->
                           <a href="#" class="text-danger ms-3 font-weight-bold text-xs"

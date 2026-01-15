@@ -38,6 +38,25 @@ class NotulenController extends Controller
         return redirect()->route('notulens.index')->with('success', 'Notulen berhasil ditambahkan');
     }
 
+    public function edit(Notulen $notulen)
+    {
+        return view('notulen.edit', compact('notulen'));
+    }
+
+    public function update(Request $request, Notulen $notulen)
+    {
+        $request->validate([
+            'schedule_id' => 'required|string',
+            'content' => 'required|string'
+        ]);
+
+        $data = $request->except('schedule_id');
+
+        $notulen->update($data);
+
+        return redirect()->route('notulens.index')->with('success', 'Notulen berhasil diubah.');
+    }
+
     public function destroy(Notulen $notulen)
     {
         $notulen->delete();

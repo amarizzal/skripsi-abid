@@ -150,7 +150,7 @@
                       <td class="align-middle text-center my-auto">
                         {{-- Link-style download button --}}
                         @if($schedule->file)
-                          <a href="{{ asset('storage/' . $schedule->file) }}" class="btn btn-primary my-auto" download title="Download File">
+                          <a href="{{ asset('storage/' . $schedule->file) }}" class="btn btn-primary my-auto" target="__blank" title="Download File">
                             <i class="ni ni-single-copy-04"></i>
                           </a>
                         @else
@@ -164,7 +164,7 @@
                           </a>
 
                           <!-- Link-style delete using a tag -->
-                          <a href="#" class="text-danger ms-3 font-weight-bold text-xs"
+                          <a href="#" class="text-danger ms-3 font-weight-bold text-xs" style="display: none;"
                               onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this schedule?')) { document.getElementById('delete-form{{$schedule->id}}').submit(); }">
                               Hapus
                           </a>

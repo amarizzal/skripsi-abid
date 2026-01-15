@@ -69,6 +69,35 @@ class DashboardController extends Controller
             ->get();
         $contacts = Contact::all();
 
-        return view('landingPage', compact('schedules', 'schedulesNextMonth', 'contacts'));
+        // graph data for 1 month
+        $startDate = Carbon::now()->subDays(30)->startOfDay();
+        $endDate = Carbon::now()->endOfDay();
+
+        // Ambil jumlah agenda per tanggal
+        $agendas = Schedule::selectRaw('DATE(date) as day, COUNT(*) as total')
+            ->whereBetween('date', [$startDate, $endDate])
+            ->groupBy(DB::raw('DATE(date)'))
+            ->orderBy('day')
+            ->get()
+            ->pluck('total', 'day');
+
+        // Siapkan array lengkap untuk grafik
+        $chartData = [];
+        $current = $startDate->copy();
+
+         while ($current <= $endDate) {
+            $originalDate = $current->format('Y-m-d'); // untuk kunci pencocokan
+            $formattedDate = $current->format('d-m');  // untuk label grafik
+
+            $chartData[] = [
+                'x' => $formattedDate,
+                'y' => $agendas[$originalDate] ?? 0
+            ];
+
+            $current->addDay();
+        }
+
+
+        return view('landingPage', compact('schedules', 'schedulesNextMonth', 'contacts', 'chartData'));
     }
 }

@@ -11,7 +11,7 @@ class ScheduleController extends Controller
 {
     public function index()
     {
-        $schedules = Schedule::whereDate('date', '>=', Carbon::today())->orderBy('date', 'asc')->paginate(10);
+        $schedules = Schedule::orderBy('date', 'asc')->paginate(10);
         return view('schedules.index', compact('schedules'));
     }
 
