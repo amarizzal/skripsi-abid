@@ -39,23 +39,44 @@
                   </div>
               @endif
 
-              <div class="row justify-content-center align-items-center">
-                <div class="col-auto">
-                  <h6>Daftar Agenda</h6>
+              <div class="row align-items-center mb-3">
+                <div class="col-md-12 col-12 mb-2 mb-md-0">
+                    <h6 class="mb-0">Daftar Agenda</h6>
                 </div>
-                <div class="col-md-4 col-12 d-flex align-items-center mx-auto">
-                  <select name="filter" id="filter" class="form-control d-inline-block ml-3">
-                    <option value="" selected disabled>Pilih disposisi</option>
-                    <option value="all">Semua</option>
-                    <option value="MENUNGGU DIKONFIRMASI">Menunggu Dikonfirmasi</option>
-                    <option value="AGENDAKAN">Agendakan</option>
-                    <option value="DIWAKILI">Diwakili</option>
-                    <option value="DITUNDA">Ditunda</option>
-                    <option value="DIBATALKAN">Dibatalkan</option> 
-                  </select>
-                </div>
-                <div class="col-md-6 col-12 text-end">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn btn-success mb-0"><i class="fas fa-plus"></i>&nbsp;&nbsp;Tambah Agenda Baru</button>
+            
+                <div class="col-md-12 col-12">
+                  <form class="row g-2 align-items-center col-md-12 col-12" method="GET" id="filterForm" action="{{ route('schedules.index') }}">
+                    <div class="col-auto">
+                      <input type="date" name="start_date" class="form-control" value="{{ request('start_date', date('Y-m-d')) }}" onchange="document.getElementById('filterForm').submit()">
+                    </div>
+                    <div class="col-auto">
+                      <input type="date"
+                            name="end_date"
+                            class="form-control"
+                            value="{{ request('end_date') }}"
+                            onchange="document.getElementById('filterForm').submit()">
+                  </div>
+                    <div class="col-auto">
+                      <select name="filter" id="filter" onchange="document.getElementById('filterForm').submit()" class="form-control d-inline-block ml-3">
+                        <option value="all">Semua</option>
+                        <option value="MENUNGGU DIKONFIRMASI" {{ request('filter')=='MENUNGGU DIKONFIRMASI' ? 'selected' : '' }}>Menunggu Dikonfirmasi</option>
+                        <option value="AGENDAKAN" {{ request('filter')=='AGENDAKAN' ? 'selected' : '' }}>Agendakan</option>
+                        <option value="DIWAKILI" {{ request('filter')=='DIWAKILI' ? 'selected' : '' }}>Diwakili</option>
+                        <option value="DITUNDA" {{ request('filter')=='DITUNDA' ? 'selected' : '' }}>Ditunda</option>
+                        <option value="DIBATALKAN" {{ request('filter')=='DIBATALKAN' ? 'selected' : '' }}>Dibatalkan</option> 
+                      </select>
+                    </div>
+                  </form>
+                  <div class="row g-2 align-items-center col-md-12 col-12 mt-2">
+                    <div class="col-md-6 col-12">
+                      <a href="{{ route('schedules.downloadPDF', request()->query()) }}" target="__blank" class="btn btn-danger">
+                        <i class="fas fa-file-pdf"></i> Print PDF
+                      </a>
+                    </div>
+                    <div class="col-md-6 col-12 text-md-end">
+                      <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp" class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;&nbsp;Tambah Agenda Baru</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -74,7 +95,9 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Agenda</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tempat & Dresscode</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Disposisi</th>
+                        @if(auth()->user()->role !== 'sekpri')
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ubah Disposisi</th>
+                        @endif
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Level Akses & Peserta</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Keterangan</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">File</th>
@@ -118,13 +141,22 @@
                             text-danger
                           @endif
                           ">{{ $schedule->disposition }}</span>
+                          
+                           @if (!empty($schedule->ket_dispo))
+                              <small class="text-muted d-block mt-1" style="font-size: 0.7rem;">
+                                  {{ $schedule->ket_dispo }}
+                              </small>
+                          @endif
+                          
                           {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
                         </td>
+                        @if(auth()->user()->role !== 'sekpri')
                         <td>
                           <a href="" class="btn btn-warning my-auto" title="Show Description" data-bs-toggle="modal" data-bs-target="#dispositionModal{{ $schedule->id }}">
                             <i class="ni ni-settings"></i>
                           </a>
                         </td>
+                        @endif
                         <td class="align-middle text-center text-sm">
                           <span class="badge badge-sm 
                           @if($schedule->access_level == 'PUBLIK')
@@ -148,9 +180,14 @@
                       </td>
 
                       <td class="align-middle text-center my-auto">
-                        {{-- Link-style download button --}}
+                        {{-- Button buka file di tab baru --}}
                         @if($schedule->file)
-                          <a href="{{ asset('storage/' . $schedule->file) }}" class="btn btn-primary my-auto" target="__blank" title="Download File">
+                          <a
+                            href="{{ asset('storage/' . $schedule->file) }}"
+                            class="btn btn-primary my-auto"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Lihat File">
                             <i class="ni ni-single-copy-04"></i>
                           </a>
                         @else
@@ -178,6 +215,11 @@
                       @endforeach
                     </tbody>
                   </table>
+                </div>
+                <div class="table-responsive mt-2">
+                  <div class="d-flex justify-content-end">
+                    {{ $schedules->links() }}
+                  </div>
                 </div>
               @endif
             </div>
@@ -341,7 +383,10 @@
                           <option value="DIBATALKAN" {{ $schedule->disposition == 'DIBATALKAN' ? 'selected' : '' }}>Dibatalkan</option>
                         </select>
                     </div>
-    
+                    <label>Catatan</label>
+                    <div class="input-group mb-3">
+                      <textarea name="ket_dispo" class="form-control" placeholder="Catatan" aria-label="Catatan" aria-describedby="email-addon">{{ $schedule->ket_dispo }}</textarea>
+                    </div>
                     <button type="submit" class="btn bg-gradient-primary mt-3">Submit</button>
                   </form>
                 </div>
@@ -390,7 +435,7 @@
       radioWithoutFile.addEventListener('change', toggleFileInput);
 
       // Filter table
-      const filter = document.getElementById('filter');
+      /*const filter = document.getElementById('filter');
       filter.addEventListener('change', function() {
         const value = filter.value;
         table.querySelectorAll('tbody tr').forEach(tr => {
@@ -406,7 +451,7 @@
             tr.style.display = 'none';
           }
         });
-      });
+      });*/
     });
 </script>
 @endsection

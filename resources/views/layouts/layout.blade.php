@@ -71,7 +71,7 @@
             <span class="nav-link-text ms-1">Notulen</span>
           </a>
         </li>
-        @if(auth()->user()->role !== 'sekda')
+        @if(auth()->user()->role == 'admin')
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                 <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -81,6 +81,7 @@
             </a>
         </li>
         @endif
+        @if(auth()->user()->role !== 'sekda')
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('contact.*') ? 'active' : '' }}" href="{{ route('contact.index') }}">
                 <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -89,6 +90,7 @@
                 <span class="nav-link-text ms-1">Kontak</span>
             </a>
         </li>
+        @endif
         {{-- <li class="nav-item">
           <a class="nav-link " href="../pages/rtl.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">

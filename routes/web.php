@@ -8,6 +8,8 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NotulenController;
+use Illuminate\Support\Facades\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,4 +37,4 @@ Route::put('schedules/{schedule}/disposition', [ScheduleController::class, 'upda
 Route::resource('notulens', NotulenController::class)->middleware('auth');
 Route::get('notulens/{notulen}/download', [NotulenController::class, 'downloadPDF'])->name('notulens.downloadPDF')->middleware('auth');
 Route::resource('contact', ContactController::class)->middleware('auth');
-
+Route::get('downloadPDF', [ScheduleController::class, 'downloadPDF'])->name('schedules.downloadPDF');

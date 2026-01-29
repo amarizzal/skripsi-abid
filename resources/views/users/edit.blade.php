@@ -41,6 +41,7 @@
                   <select name="role" id="role" class="form-control" required>
                     <option value="admin" {{ old('role', $user->role ?? '') == 'admin' ? 'selected' : '' }}>Admin</option>
                     <option value="sekda" {{ old('role', $user->role ?? '') == 'sekda' ? 'selected' : '' }}>Sekda</option>
+                    <option value="sekpri" {{ old('role', $user->role ?? '') == 'sekpri' ? 'selected' : '' }}>Sekpri</option>
                 </select>
                 </div>
                 <button type="submit" class="btn bg-gradient-primary mt-3">Submit</button>

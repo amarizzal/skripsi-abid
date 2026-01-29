@@ -18,6 +18,7 @@ class Schedule extends Model
         'disposition',
         'access_level',
         'audience',
-        'description'
+        'description',
+        'ket_dispo'
     ];
 }

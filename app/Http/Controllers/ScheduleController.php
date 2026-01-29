@@ -6,12 +6,32 @@ use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class ScheduleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $schedules = Schedule::orderBy('date', 'asc')->paginate(10);
+        // Default start & end date = hari ini
+       $startDate = $request->input('start_date', Carbon::today()->toDateString());
+        $endDate   = $request->input('end_date'); // boleh null
+
+    $schedules = Schedule::query()
+        ->when(
+            $request->filled('filter') && $request->filter !== 'all',
+            fn ($query) => $query->where('disposition', $request->filter)
+        )
+        ->where('date', '>=', Carbon::parse($startDate)->startOfDay())
+        ->when(
+            $endDate,
+            fn ($query) => $query->where(
+                'date',
+                '<=',
+                Carbon::parse($endDate)->endOfDay()
+            )
+        )
+        ->orderBy('date', 'asc')
+        ->paginate(10)
+        ->withQueryString();
         return view('schedules.index', compact('schedules'));
     }
 
@@ -111,6 +131,7 @@ class ScheduleController extends Controller
 
         // Gabungkan menjadi datetime string
         $data['disposition'] = $request->disposition;
+        $data['ket_dispo'] = $request->ket_dispo;
 
         $schedule->update($data);
 
@@ -126,5 +147,22 @@ class ScheduleController extends Controller
         $schedule->delete();
 
         return redirect()->route('schedules.index')->with('success', 'Agenda berhasil dihapus.');
+    }
+
+    public function downloadPDF(Request $request)
+    {
+        $startDate = $request->start_date ?? now()->format('Y-m-d');
+        $endDate   = $request->end_date   ?? now()->format('Y-m-d');
+
+        $schedules = Schedule::when($request->filter && $request->filter != 'all', function($q) use ($request) {
+                $q->where('disposition', $request->filter);
+            })
+            ->whereBetween('date', [$startDate.' 00:00:00', $endDate.' 23:59:59'])
+            ->orderBy('date', 'asc')
+            ->get();
+
+        $pdf = Pdf::loadView('schedules.pdf', compact('schedules', 'startDate', 'endDate'));
+
+        return $pdf->download('agenda_'.$startDate.'_to_'.$endDate.'.pdf');
     }
 }

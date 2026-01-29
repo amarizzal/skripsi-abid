@@ -69,4 +69,6 @@ class NotulenController extends Controller
         $pdf = Pdf::loadView('notulen.pdf', compact('notulen'));
         return $pdf->download($notulen->schedule->content . ' - NOTULEN.pdf');
     }
+
+    
 }

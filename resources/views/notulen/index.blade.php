@@ -99,7 +99,7 @@
 
                       <td class="align-middle text-center my-auto">
                         {{-- Link-style download button --}}
-                          <a href="{{ route('notulens.downloadPDF', $notulen) }}" class="btn btn-success my-auto" title="Download File">
+                          <a href="{{ route('notulens.downloadPDF', $notulen) }}" target="__BLANK" class="btn btn-success my-auto" title="Download File">
                             <i class="ni ni-single-copy-04"></i>
                           </a>
                       </td>

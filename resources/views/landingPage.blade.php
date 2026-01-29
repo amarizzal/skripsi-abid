@@ -38,7 +38,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
     <div class="container">
-      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="../pages/dashboard.html">
+      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="{{ route('landingPage')}}">
         E-Schedule Kabupaten Malang
       </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
       <div class="collapse navbar-collapse" id="navigation">
         <div class="mx-auto ps-lg-5 ps-xl-5 ps-md-4 ps-0">
           <ul class="navbar-nav flex-row justify-content-center align-items-center">
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="{{ route('landingPage')}}">
                 <i class="fa fa-chart-pie opacity-6 me-1"></i>
                 Agenda
@@ -62,7 +62,7 @@
                 <i class="fas fa-key opacity-6 me-1"></i>
                 Sign In
               </a>
-            </li>
+            </li> --}}
           </ul>
         </div>
         <ul class="navbar-nav ms-auto d-lg-block d-none">
@@ -169,8 +169,15 @@
                         </td>
                         <td class="align-middle text-sm">
                           <div class="col text-center">
-                            <p class="text-xs font-weight-bold mb-0">Peserta:</p>
-                            <h6 class="text-sm mb-0">{{ $schedule->audience }}</h6>
+                            <p class="text-xs font-weight-bold mb-0">Disposisi:</p>
+                            <h6 class="text-sm mb-0">{{ $schedule->disposition }}</h6>
+
+                            @if(!empty($schedule->ket_dispo))
+                               <p class="text-sm text-muted mb-0">
+                               {{ $schedule->ket_dispo }}
+                             </p>
+                            @endif
+
                           </div>
                         </td>
                       </tr>
@@ -255,6 +262,11 @@
                           <div class="col text-center">
                             <h6 class="text-sm mb-0">{{ $schedule->disposition }}</h6>
                           </div>
+                          @if(!empty($schedule->ket_dispo))
+                               <p class="text-sm text-muted mb-0">
+                               {{ $schedule->ket_dispo }}
+                             </p>
+                            @endif
                         </td>
                       </tr>
                       @endforeach

@@ -276,6 +276,7 @@
                           <option value="" selected disabled>Pilih role</option>
                           <option value="admin">Admin</option>
                           <option value="sekda">Sekda</option>
+                          <option value="sekpri">Sekpri</option>
                         </select>
                     </div>
 
